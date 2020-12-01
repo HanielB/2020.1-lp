@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title: Grading
 description: The activities to be graded
 ---
