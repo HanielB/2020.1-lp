@@ -1,17 +1,17 @@
 ---
 layout: page
-title: Avaliações
-description: Descrição das Avaliações
+title: Grading
+description: The activities to be graded
 ---
 
-# Avaliações
+# Grading
 
 {: .no_toc .mb-2 }
 
 Forma de Avaliação no Ensino Remoto Emergencial
 {: .fs-6 .fw-300 }
 
-## Sumário
+## Outline
 {: .no_toc .text-delta }
 
 1. TOC

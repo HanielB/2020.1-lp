@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Linguagens de Programação
-tagline: Linguagens de Programação
-description: Curso ofertado pelo DCC-UFMG
+title: DCC024 Programming Languages
+tagline: Programming Languages
+description: Course given by DCC-UFMG
 author: Haniel Barbosa
 baseurl: '/'
 url: 'https://hanielb.github.io/2020.2-lp/'

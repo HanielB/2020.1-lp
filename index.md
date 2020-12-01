@@ -4,7 +4,7 @@ title: DCC 024
 nav_exclude: true
 seo:
   type: Course
-  name: Linguagens de Programação
+  name: Programming Languages
 ---
 
 # {{ site.tagline }}
@@ -34,18 +34,18 @@ An overview of programming language concepts in three parts.
 
 The purpose of this course is to study fundamentals concepts in programming
 languages and major tools and techniques to implement them. This includes a
-number of programming paradigms, namely: functional, imperative, and logic, as
-well as general aspects such as syntax specification and informal semantic
-models; binding and scoping; types and type systems; control structures; data
-abstraction; procedural abstraction and parameter passing; higher-order
-functions; and memory management. The course has a strong implementation
-component, with three languages being covered:
+number of programming paradigms, namely: functional, imperative/object-oriented,
+and logic, as well as general aspects such as syntax specification and informal
+semantic models; binding and scoping; types and type systems; control
+structures; data abstraction; procedural abstraction and parameter passing;
+higher-order functions; and memory management. The course has a strong
+implementation component, with three languages being covered:
 [SML](http://www.smlnj.org/sml97.html), [Python](http://www.python.org/), and
 [Prolog](http://www.swi-prolog.org/). No prior familiarity with these languages
 is assumed in this course. Learning them will have the secondary effect of
 exposing students to the different programming paradigms.
 
-An overview of the different course components can be viewed below.
+The different course topics are viewed below.
 
 <!-- O curso de Introdução à Ciência de Dados (DCC212) do DCC-UFMG tem como -->
 <!-- principal objetivo trazer para os discentes um conhecimento estatístico através -->
@@ -69,7 +69,7 @@ An overview of the different course components can be viewed below.
 <!-- Mod 1 - Mod 3 - Mod 4 - Mod 2 -->
 <!-- ``` -->
 
-# Module 0: SML introduction
+# Topic 0: SML introduction
 
 An introduction to functional programming and the Standard ML (SML) programming
 language.
@@ -79,17 +79,17 @@ language.
 1. Getting acquainted with functional programming.
 1. Learning to write simple programs in SML.
 
-# Module 1: Syntax and semantics of programming languages
+# Topic 1: Syntax and semantics of programming languages
 
 PL concepts such as types and polymorphism, higher-order functions, scope and
 binders, as well as formal notions of syntax and semantics.
 
-# Module 2: General concepts
+# Topic 2: General concepts
 
 An introduction to general programming language concepts, viewed from the point
 of view of the imperative, functional and object-oriented paradigms.
 
-# Module 3: Logic programming
+# Topic 3: Logic programming
 
 An introduction to logic programming and the Prolog programming language.
 
