@@ -84,12 +84,12 @@ language.
 PL concepts such as types and polymorphism, higher-order functions, scope and
 binders, as well as formal notions of syntax and semantics.
 
-# Module 3: General concepts
+# Module 2: General concepts
 
 An introduction to general programming language concepts, viewed from the point
 of view of the imperative, functional and object-oriented paradigms.
 
-# Module 4: Logic programming
+# Module 3: Logic programming
 
 An introduction to logic programming and the Prolog programming language.
 

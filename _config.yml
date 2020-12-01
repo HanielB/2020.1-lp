@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Introdução à Ciência de Dados
-tagline: Introdução à Ciência de Dados
-description: Curso Ofertado Pelo DCC-UFMG
-author: Flavio Figueiredo
+title: Linguagens de Programação
+tagline: Linguagens de Programação
+description: Curso ofertado pelo DCC-UFMG
+author: Haniel Barbosa
 baseurl: '/'
-url: 'https://icd-ufmg.github.io'
+url: 'https://hanielb.github.io/2020.2-lp/'
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
 
 # Theme settings
@@ -28,7 +28,7 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links_new_tab: true
-footer_content: 'Flavio Figueiredo &copy; 2020 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>'
+footer_content: 'Haniel Barbosa &copy; 2020 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>'
 
 # Collections for website data
 collections:
