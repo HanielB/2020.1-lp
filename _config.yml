@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: DCC024 Programming Languages
+title: Programming Languages
 tagline: Programming Languages
 description: Course given by DCC-UFMG
 author: Haniel Barbosa
@@ -53,7 +53,10 @@ defaults:
 just_the_docs:
   collections:
     lessons:
-      name: Material
+      name: Notes
+      # order:
+      #   - _lessons/01-sml-intro/sml-intro.md
+      #   - _lessons/04-polymorphism/polymorphism.md
 
 compress_html:
   clippings: all

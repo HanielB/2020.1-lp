@@ -7,6 +7,5 @@ description: Writing an interpreter
 ---
 
 # Description
-{: .no_toc .mb-2 }
 
 TODO

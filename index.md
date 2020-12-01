@@ -1,6 +1,6 @@
 ---
 layout: home
-title: DCC 024
+title: DCC 024 Programming Languages
 nav_exclude: true
 seo:
   type: Course
@@ -69,7 +69,7 @@ The different course topics are viewed below.
 <!-- Mod 1 - Mod 3 - Mod 4 - Mod 2 -->
 <!-- ``` -->
 
-# Topic 0: SML introduction
+# Topic 1: SML introduction
 
 An introduction to functional programming and the Standard ML (SML) programming
 language.
@@ -79,17 +79,17 @@ language.
 1. Getting acquainted with functional programming.
 1. Learning to write simple programs in SML.
 
-# Topic 1: Syntax and semantics of programming languages
+# Topic 2: Syntax and semantics of programming languages
 
 PL concepts such as types and polymorphism, higher-order functions, scope and
 binders, as well as formal notions of syntax and semantics.
 
-# Topic 2: General concepts
+# Topic 3: General concepts
 
 An introduction to general programming language concepts, viewed from the point
 of view of the imperative, functional and object-oriented paradigms.
 
-# Topic 3: Logic programming
+# Topic 4: Logic programming
 
 An introduction to logic programming and the Prolog programming language.
 
