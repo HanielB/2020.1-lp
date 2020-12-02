@@ -18,7 +18,7 @@ tagline: Programming Languages
 description: Course given by DCC-UFMG
 author: Haniel Barbosa
 baseurl: '/'
-url: 'https://hanielb.github.io/'
+url: 'https://hanielb.github.io'
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
 
 # Theme settings
