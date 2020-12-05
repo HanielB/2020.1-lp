@@ -15,5 +15,5 @@ title: Topic 00 - Course introduction and overview
 
 02 Dez
 : **Course overview**
-  : [Slides]({{ site.baseurl }}{% link _lessons/00-course_intro/00-course-overview.pdf %})
+  : [Slides]({{ site.baseurl }}{% link _lessons/00-course_intro/00-course-overview.pdf %}),
   : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwtZLp1C0jv1mmXL5wTWZ6k)

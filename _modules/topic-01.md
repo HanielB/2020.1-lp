@@ -6,5 +6,5 @@ title: Topic 01 - SML introduction
 {: .text-gamma }
 
 02 Dez
-: [**SML introduction**]({{ site.baseurl }}{% link _lessons/sml_intro.md %}),
+: [**SML introduction**]({{ site.baseurl }}{% link _lessons/01-sml-intro/sml-intro.md %}),
   : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxjkRr595OVUL2GC3zCouTm)
