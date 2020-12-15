@@ -118,14 +118,16 @@ val t4 = Node(t9,4,e)
 
 Note that `t4` corresponds to
 
-          (4)
-          / \
-        (9) ()
-        / \
-       /   \
-     (3)   (5)
-     / \   / \
-    () () () ()
+```
+      (4)
+      / \
+    (9) ()
+    / \
+   /   \
+ (3)   (5)
+ / \   / \
+() () () ()
+```
 
 - A helper function to build elements of `btree`
 
@@ -188,36 +190,42 @@ Which gives us:
 ``` ocaml
 val s = Node (Leaf, 3, Node (Leaf, 6, Leaf))
 ```
-     (3)
+
+```
+  (3)
+ /   \
+()   (6)
     /   \
-   ()   (6)
-       /   \
-      ()   ()
+   ()   ()
+```
 
 ``` ocaml
 val s1 = insert 4 s
 ```
-     (3)
+```
+  (3)
+ /   \
+()   (6)
     /   \
-   ()   (6)
-       /   \
-     (4)   ()
-    /   \
-   ()   ()
-
+  (4)   ()
+ /   \
+()   ()
+```
 
 ``` ocaml
 val s2 = insert 5 s1
 ```
-     (3)
+```
+  (3)
+ /   \
+()   (6)
     /   \
-   ()   (6)
-       /   \
-     (4)   ()
+  (4)   ()
+ /   \
+()   (5)
     /   \
-   ()   (5)
-       /   \
-      ()   ()
+   ()   ()
+```
 
 - How to collect all labels in `t : btree` into a list?
 
