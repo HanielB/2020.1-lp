@@ -251,8 +251,8 @@ datatype btree = L of int | Node of btree * int * btree;
   nodes in a tree.
 
 
-<details>
-<summary>Solution</summary>
+<details><summary>Solution</summary>
+<p>
 
 ```ocaml
 fun size (L(_)) = 0
@@ -261,6 +261,7 @@ fun size (L(_)) = 0
 size (Node(Node(L(0),1,L(2)), 3, Node(L(4),5,Node(L(6),7,L(8)))));
 ```
 
+</p>
 </details>
 
 - Write a function `mirror : btree -> btree` which takes a tree `t` and returns
@@ -282,11 +283,10 @@ is
              )
 ```
 
-<details>
-<summary>Solution</summary>
+<details><summary>Solution</summary>
+<p>
 
-
-``` ocaml
+```ocaml
 fun mirror (L n) = L n
   | mirror (Node (t1, n, t2)) = Node (mirror t2, n, mirror t1);
 
@@ -295,4 +295,5 @@ mirror (Node (Node (L 0, 1, L 1),
               Node (L 0, 4, Node (L 1, 7, L 2))) );
 ```
 
+</p>
 </details>
