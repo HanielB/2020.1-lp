@@ -251,15 +251,18 @@ datatype btree = L of int | Node of btree * int * btree;
   nodes in a tree.
 
 
-<details><summary>Solution</summary>
+<details>
+<summary>Solution</summary>
 <p>
 
-```ocaml
+{{
+"```ocaml
 fun size (L(_)) = 0
   | size (Node(t1, _, t2)) = (size t1) + 1 + (size t2);
 
 size (Node(Node(L(0),1,L(2)), 3, Node(L(4),5,Node(L(6),7,L(8)))));
-```
+```"
+| markdownify}}
 
 </p>
 </details>
@@ -286,14 +289,16 @@ is
 <details><summary>Solution</summary>
 <p>
 
-```ocaml
+{{
+"```ocaml
 fun mirror (L n) = L n
   | mirror (Node (t1, n, t2)) = Node (mirror t2, n, mirror t1);
 
 mirror (Node (Node (L 0, 1, L 1),
               3,
               Node (L 0, 4, Node (L 1, 7, L 2))) );
-```
+```"
+| markdownify}}
 
 </p>
 </details>
