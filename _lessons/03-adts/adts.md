@@ -238,3 +238,49 @@ fun traverse (Leaf) = []
         l1 @ [m] @ l2
     end;
 ```
+
+## Exercises
+
+Given an ADT
+
+```ocaml
+datatype btree = L of int | Node of btree * int * btree;
+```
+
+- Write a function `size : btree -> int` that computes the number of internal
+  nodes in a tree.
+
+```ocaml
+fun size (L(_)) = 0
+  | size (Node(t1, _, t2)) = (size t1) + 1 + (size t2);
+
+size (Node(Node(L(0),1,L(2)), 3, Node(L(4),5,Node(L(6),7,L(8)))));
+```
+
+- Write a function `mirror : btree -> btree` which takes a tree `t` and returns
+the *mirror image* of `t`, that is, the tree obtained from `t` by swapping every
+left subtree with its corresponding right subtree.  For example,
+
+```
+mirror (Node (Node (L 0, 1, L 1),
+              3,
+              Node (L 0, 4, Node (L 1, 7, L 2))) )
+```
+
+is
+
+```
+       Node (Node (Node (L 2, 7, L 1), 4, L 0),
+             3,
+             Node (L 1, 1, L 0),
+             )
+```
+
+``` ocaml
+fun mirror (L n) = L n
+  | mirror (Node (t1, n, t2)) = Node (mirror t2, n, mirror t1);
+
+mirror (Node (Node (L 0, 1, L 1),
+              3,
+              Node (L 0, 4, Node (L 1, 7, L 2))) );
+```
