@@ -11,3 +11,4 @@ title: Topic 02 - Syntax and semantics of programming languages
 
 : **Q&A**
   : [Recording 13:00](https://youtu.be/kZ45wkIXBW8)
+  : [Recording 13:00](https://youtu.be/bhxXOzPxGzI)
