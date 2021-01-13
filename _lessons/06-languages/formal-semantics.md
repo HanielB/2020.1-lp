@@ -24,229 +24,140 @@ title: Formal semantics
 - The semantics of a language `L1` can be defined via a interpreted for `L1` in
   another language `L2` with a well-defined semantics.
 
-  Note this is the approach we've taken with our [expresion language](), using
-  SML as the interpreter language.
+  - Note this is the approach we've taken with our [expression language](), using
+    SML as the interpreter language.
 
-- Um jeito de definir a semântica formal de uma linguagem L1 é construir um
-  interpretador de L1 usando uma linguagem L2 de semântica bem definida.
+  - However, how do we define the semantics of `L2`?
 
-- Mas como definir a semântica de L2?
+- There are formal notations to define the semantics of programming languages. For example:
+  - Operational semantics
+  - Axiomatic semantics
+  - Denotational semantics
 
-- Existem notações formais para definir semântica de linguagens de
-  programação. Por exemplo: semântica operacional, semântica axiomática e
-  semântica denotacional.
+- Operational semantics specifies, step by step, what happens while a program is executed.
 
-- A semântica operacional especifica, passo a passo, o que ocorre com o programa
-  enquanto ele é executado.
+### Notations
 
-### Languages
+**TODO** update for expression language
 
-[Writing on the board](https://homepages.dcc.ufmg.br/~hbarbosa/teaching/ufmg/2020-1/lp/notes/07-syntax-semantics-writing.png)
-
-### Abstract syntax trees
-
-An algebraic datatype whose values correspond to abstract syntax trees of arithmetic expressions:
-
-``` ocaml
-datatype expr = IConst of int | Plus of expr * expr | Minus of expr * expr;
-```
-
-An integer constant expression:
-
-``` ocaml
-val e1 = IConst 17;
-```
-
-The expression `3 - 4`, whose AST is
+- Judements for writing inference rules:
+  - Premises are written above the line.
+  - Conclusion below the line.
+  - Label by the lines denote the rule name
+  - Arrows represent how expressions are evaluated.
 
 ```
-  -
- / \
-3  4
-```
-is the value
+ E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
+------------------------ EvPlus     -------------------------- EvMinus
+Plus(E1, E2) -> v1 + v2             Minus(E1, E2) -> v1 - v2
 
-``` ocaml
-val e2 = Minus(IConst 3, IConst 4);
+------------- EvIConst
+IConst n -> n
 ```
 
-The expression
+The above establishes how expressions built with `IConst`, `Plus` and `Minus`
+are evaluated, i.e., in terms of the semantics of `+`, `-`.
+
+#### Big step and small step semantics
+
+- The above is often called "big step semantics", as opposed to "small step
+semantics":
+  - only one computation at a time
 
 ```
-       -
-      / \
-      +  6
-     / \
-    23  5
+ E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
+------------------------ EvPlus     -------------------------- EvMinus
+Plus(E1, E2) -> v1 + v2             Minus(E1, E2) -> v1 - v2
+
+------------- EvIConst
+IConst n -> n
 ```
 
-is
+#### How to define the semantics of ITE?
 
-``` ocaml
-val e3 = Minus(Plus(IConst 23, IConst 5), IConst 6);
 ```
 
-### Evaluation
-
-Evaluating arithmetic expressions.
-
-``` ocaml
-fun eval (IConst i) = i
-  | eval (Plus(e1, e2)) = (eval e1) + (eval e2)
-  | eval (Minus(e1, e2)) = (eval e1) - (eval e2);
-
-e1;
-eval e1;
-
-e2;
-eval e2;
-
-e3;
-eval e3;
+E1 -> true       E2 -> v2            E1 -> false      E3 -> v3
+-------------------------     or     -------------------------
+  if(E1, E2, E3) -> v2                 if(E1, E2, E3) -> v3
 ```
 
-Evaluating arithmetic expressions with a "cutoff subraction", i.e. one that
-only produces non-negative results.
+#### How to add variables?
 
-``` ocaml
-fun eval2 (IConst i) = i
-  | eval2 (Plus(e1, e2)) = (eval2 e1) + (eval2 e2)
-  | eval2 (Minus(e1, e2)) =
-    let val res = (eval2 e1) - (eval2 e2) in
-        if res < 0 then
-            0
-        else
-            res
-    end;
+```
+(E1, C) -> v1    (E2, C) -> v2             (E1, C) -> v1     (E2, C) -> v2
+------------------------------             -------------------------------
+ (plus(E1, E2), C) -> v1 + v2               (times(E1, E2), C) -> v1 * v2
 
-e1;
-eval2 e1;
-e2;
-eval2 e2;
-e3;
-eval2 e3;
+
+(var(v), C) -> lookup(C, v)                (const(n), C) -> eval(n)
+
+
+(E1, C) -> v1    (E2, [bind(x, v1)|C]) -> v2
+--------------------------------------------
+        (let(x, E1, E2), C) -> v2
 ```
 
-Note that `expr + eval2` is a **different** language than `expr + eval`. Even
-though their ASTs are the same their semantics differ.
+### Static vs dynamic semantics
 
-### Extending expression language: Booleans
+- Static semantics: program meaning known at compilation time.
+- Dynamic semantics: program meaning known at run time.
 
-We can further extend our expression language to encompass Boolean expressions
-and conditionals.
+### Program equivalence
 
-``` ocaml
-datatype bexpr = BConst of bool | Not of bexpr | And of bexpr * bexpr | Or of bexpr * bexpr;
+* Semantic equivalence
+17) What does it mean to say that two programs P1 and P2 are equivalent?
+<P1, B> -> <v, B'> iff <P2, B> -> <v, B'>
+- or -
+<P1, B> -> stuck iff <P2, B> -> stuck
 
-val b1 = BConst false;
-val b2 = Not b1;
+18) Prove that
+if be then c1 else c2 == if not(be) then c2 else c1
+
+The proof is by induction on the rules used to evaluate the expression.
+
+18.1) What are these rules?
+
+```
+be -> true     c1 -> v                      be -> true
+---------------------- IfTrue           ----------------- NotTrue
+ if(be, c1, c2) -> v                     not(be) -> false
+
+be -> false     c2 -> v                      be -> false
+---------------------- IfFalse           ----------------- NotFalse
+ if(be, c1, c2) -> v                      not(be) -> true
 ```
 
-An evaluator for Boolean expressions:
+Case 1)
 
-``` ocaml
-fun evalb (BConst b) = b
-  | evalb (Not b) = not (evalb b)
-  | evalb (And(b1, b2)) = (evalb b1) andalso (evalb b2)
-  | evalb (Or(b1, b2)) = (evalb b1) orelse (evalb b2);
-
-evalb b1;
-evalb b2;
+```
+be -> true       c1 -> v
+------------------------
+  if(be, c1, c2) -> v
 ```
 
-Abstract syntax tree for (conditional) arithmetic expressions:
+What do we know? We know that (i) "be -> true" and (ii) "c1 -> v"
+From (i) and rule NotTrue we know that "not(be) -> false", thus:
 
-``` ocaml
-datatype aexpr =
-         IConst of int
-         | Plus of aexpr * aexpr
-         | Minus of aexpr * aexpr
-         | Ite of bexpr * aexpr * aexpr;
-
-val e1 = IConst 17;
-val e2 = Plus(e1, Minus(IConst 10, IConst 30));
-val e3 = Ite(b1, e1, e2);
-val e4 = Ite(b2, e1, e2);
+```
+not(be) -> false       (ii) c1 -> v
+-----------------------------------
+    if(not(be), c2, c1) -> v
 ```
 
-An evaluator for (conditiotional) arithmetic expressions:
+Case 2)
 
-``` ocaml
-fun evala (IConst i) = i
-  | evala (Plus(e1, e2)) = (evala e1) + (evala e2)
-  | evala (Minus(e1, e2)) = (evala e1) - (evala e2)
-  | evala (Ite(c, t, e)) =  if (evalb c) then (evala t) else (evala e);
-
-e1;
-evala e1;
-e2;
-evala e2;
-e3;
-evala e3;
-e4;
-evala e4;
+```
+be -> false      c2 -> v
+------------------------
+  if(be, c1, c2) -> v
 ```
 
-### Extending expression language: Variables
+What we know? We know that (i) "be -> false" and (ii) "c2 -> v"
+From (i) plus NotFalse we know that "not(be) -> true", thus:
 
-We can further expand our language to include *variables*.
-
-``` ocaml
-datatype aexpr =
-         IConst of int
-         | Plus of aexpr * aexpr
-         | Minus of aexpr * aexpr
-         | Ite of bexpr * aexpr * aexpr
-         | Var of string;
-
-val e1 = Var "x";
-val e2 = Plus(IConst 17, e1);
 ```
-
-To evaluate expressions with variables we need to be able to associate them
-with values. To this we will need a notion of *state*, for example by means of an
-*association list*, i.e.
-
-``` ocaml
-lists of type ('a * 'b) list
+not(be) -> true     (ii) c2 -> v
+--------------------------------
+   if(not(be), c2, c1) -> v
 ```
-
-which can be seen as maps/dictionaries with keys of type `'a` and values of type
-`'b`.
-
-By building such lists from variable identifiers (strings) to values (IConst i)
-we will be able to map variables to values and thus evaluate expressions with
-variables.
-
-``` ocaml
-val state = [("x", IConst 3), ("y", IConst 78), ("z", IConst 676)];
-```
-
-We define a helper function to look for values in an associotion list:
-
-``` ocaml
-fun lookup [] id = raise Match
-  | lookup ((k:string, v)::t) id = if k = id then v else lookup t id;
-
-lookup state "x";
-lookup state "z";
-lookup state "w";
-```
-
-Evaluation now takes an expression and a state.
-
-``` ocaml
-fun eval (IConst i) _ = i
-  | eval (Var x) state = eval (lookup state x) state
-  | eval (Plus(e1, e2)) state = (eval e1 state) + (eval e2 state)
-  | eval (Minus(e1, e2)) state = (eval e1 state) - (eval e2 state)
-  | eval (Ite(c, t, e)) state = if (evalb c) then (eval t state) else (eval e state);
-
-
-e1;
-e2;
-eval e1 state;
-eval e2 state;
-```
-
-How to extend the language to allow bulding a state *during* evaluation?
