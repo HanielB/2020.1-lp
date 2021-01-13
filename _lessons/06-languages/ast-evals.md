@@ -198,7 +198,7 @@ variables.
 val state = [("x", IConst 3), ("y", IConst 78), ("z", IConst 676)];
 ```
 
-We define a helper function to look for values in an associotion list:
+We define a helper function to look for values in an association list:
 
 ``` ocaml
 fun lookup [] id = raise Match
