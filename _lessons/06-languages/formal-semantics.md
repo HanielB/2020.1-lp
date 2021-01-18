@@ -41,6 +41,8 @@ title: Formal semantics
   common way is with *operational semantics*:
   - Specifies, step by step, what happens while a program is executed.
 
+- [Writing on the board for operational semantics]({{ site.baseurl }}{% link _lessons/06-languages/formal-semantics.png %})
+
 ## Operational semantics
 
 - The specification of an execution is step is given by *inference rules*
