@@ -249,7 +249,7 @@ P1 -> stuck iff P2 -> stuck
 
 - The lambda calculus is a notation to describe computations
 
-  - It thus offers a precise formal semantics for programming languages.
+  - It offers a precise formal semantics for programming languages.
 
 - The [Church-Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis):
 
@@ -258,7 +258,7 @@ P1 -> stuck iff P2 -> stuck
   - In other words, these are equivalent models of computation, i.e., of
     defining *algorithms*.
 
-  - Turing and Churcil indepedently proved, in 1936, that:
+  - Turing and Church indepedently proved, in 1936, that:
     - program termination is undecidable (with Turing machines)
     - program equivalence is undecidable (with lambda calculus)
 
@@ -275,7 +275,7 @@ P1 -> stuck iff P2 -> stuck
 ### Notation
 
 The lambda calculus consists of writing λ-expressions and reducing
-them. Intuitively it is a notation for writing functions and their application.
+them. Intuitively it is a notation for writing functions and their applications.
 
 A λ-expression is either:
 - a variable
@@ -284,11 +284,9 @@ x
 ```
 
 - an abstraction ("a function")
-
 ```
 λx . x
 ```
-
 in which the variable after the lambda is called its *bound variable* and the
 expression after the dot its *body*.
 
@@ -320,7 +318,6 @@ computing with functions.
   application.
 
 - Consider the example application above:
-
 ```
 (λx . x) z
 =>_β
@@ -333,7 +330,6 @@ expression it is applied to will be the result of the application.
 ### Alpha (α-conversion)
 
 - Renames bound variables.
-
 ```
 (λx . x)
 =>_α
@@ -343,7 +339,7 @@ expression it is applied to will be the result of the application.
 - Expressions that are only different in the names of their bound variables are
   called *α-equivalent*.
   - Intuitevely, the names of the bound variables do not change the meaning of the function.
-  - Both `(λx . x)` and `(λy . y)` correspond to the identity function.
+  - For example, both `(λx . x)` and `(λy . y)` correspond to the identity function.
 
 ### Free and bound variables
 
@@ -355,7 +351,7 @@ expression it is applied to will be the result of the application.
 ```
 - This renaming changes what the function computes, as `x` was renamed to a
   variable, `y`, that was *not free* in the body of the expression.
-  - As example, consider the following SML code:
+  - As an example, consider the following SML code:
 
   ``` ocaml
   val y = 1
@@ -366,34 +362,33 @@ expression it is applied to will be the result of the application.
   You will note that `f1` and `f2` are equivalent, while `f1` and `f3` are not.
 
 
-- Free variables are those that are *not* bound by any lambda abstraction enclosing it.
+- Free variables are those that are *not* bound by any lambda prefix enclosing it.
   ```
   (λw . z w)
   ```
    - In the body of the expression `w` is bound while `z` is free.
 
-- To avoid this issue, α-conversion must be applied with *capture-avoiding*
+### Capture-avoiding substitutions
+
+- To avoid the above issue, α-conversion must be applied with *capture-avoiding*
   substitutions:
-  - When recursively traversing the expression to apply the subsitution, if the
+  - When recursively traversing the expression to apply the substitution, if the
     range of the substitution contains a variable that is bound in an
     abstraction, rename the bound variable so that the free variable is not
     *captured*.
-  - In the above example, to do a substitution of `x:=y` on `(λ x . (λ y . y x))`, written
-
+  - In the above example, to do a substitution of `x` by `y` on `(λ x . (λ y . y x))`, written
   ```
   (λx . (λy . y x))[x:=y]
   ```
 
   we will do `(λ y . y x)[x:=y]`. Since `y` is bound in the expression in which
   we are doing the substitution, we rename the bound variable to avoid capture:
+  ```
+  (λy . y x) =>_α (λz . z x)
+  ```
 
-
-   ```
-   (λy . y x) =>_α (λz . z x)
-   ```
-
-   Now we can do `(λz . z x)[x:= y]` so that the variable `x`, which was is
-   free in this expression, does not become bound by it. Thus we obtain:
+   Now we can do `(λz . z x)[x:= y]` so that the variable `x`, which is free
+   in this expression, remains so after substitution. Thus we obtain:
    ```
    (λx . (λy . y x))
    =>_α
@@ -410,7 +405,7 @@ expression it is applied to will be the result of the application.
   algorithm that exists.
 - The caveat: you must first encode in λ-expressions whatever you mean.
 
-#### Numbers (Church encoding)
+### Numbers (Church encoding)
 
 - Encodings are about conventions. We agree on the meaning of something and build accordingly.
 - A number is a function that takes a function `s` plus a constant `z`. The number `N` corresponds to `N` applications of `s` to `z`.
@@ -422,14 +417,13 @@ Two   = λs. λz. s (s z)
 Three = λs. λz. s (s (s z))
 ...
 ```
-###### The successor function
+#### The successor function
 
 ```
 SUCC = λn. λy. λx. y (n y x)
 ```
 
 - If we apply the successor function to `Zero` we must obtain `One`:
-
 ```
 SUCC Zero =
   (λn.λy.λx.y(nyx))(λs.λz.z) =>_β
@@ -438,7 +432,6 @@ SUCC Zero =
 One
 ```
 - Similarly, we should obtain that `SUCC One = Two`
-
 ```
 SUCC One =
   (λn.λy.λx.y(nyx))(λs.λz.sz) =>_β
@@ -446,18 +439,16 @@ SUCC One =
   λy.λx.y(yx) =
 Two
 ```
-
 And so on. One can prove via induction that `Succ N` is always equal to the
 corresponding natural number of `N` plus one.
 
-###### Addition
+#### Addition
 
 ```
 ADD = λm.λn.λx.λy.m x (n x y)
 ```
 
 - Again we can see the expected behavior with examples:
-
 ```
 ADD Two Three =
  (λm.λn.λx.λy.m x (n x y)) Two Three =>_β
@@ -484,14 +475,15 @@ ADD Two Three =
   SUCC Four =>_β
 Five
 ```
-
-Note that all complexity lies in *how to encode*. Once the encoding done
-computation is merely doing β-reduction. The above is enough to encode
+The above is enough to encode
 [Presburger arithmetic ](https://en.wikipedia.org/wiki/Presburger_arithmetic).
+- One can encode anything we are used to do with computers.
 
-- One can encode anything we are used to bo with computers.
+Note that all complexity lies in *how to encode*. Once the encoding is done,
+computation is merely doing β-reduction.
 
-#### Boolean algebra
+
+### Boolean algebra
 
 ```
 T  = λx.λy.x
