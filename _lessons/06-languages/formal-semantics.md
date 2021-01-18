@@ -83,7 +83,7 @@ Plus(E1, E2) -> Plus(E1', E2)             Minus(E1, E2) -> Minus(E1', E2)
 -----------------------------EvPlus2      ---------------------------------EvMinus2
 Plus(E1, E2) -> Plus(E1, E2')             Minus(E1, E2) -> Minus(E1, E2')
 
-    E -> E'
+
 ---------------EvIConst
 IConst n -> n
 
