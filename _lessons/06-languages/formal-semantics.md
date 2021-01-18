@@ -31,8 +31,9 @@ title: Formal semantics
 - The semantics of a language `L1` can be defined via a interpreted for `L1` in
   another language `L2` with a well-defined semantics.
 
-  - Note this is the approach we've taken with our [expression language](), using
-    SML as the interpreter language.
+  - Note this is the approach we've taken with our [expression language]({{
+    site.baseurl }}{% link _lessons/06-languages/ast-evals.md %}), using SML as
+    the interpreter language.
 
   - However, how do we define the semantics of `L2`?
 
@@ -50,7 +51,7 @@ title: Formal semantics
   - Label by the lines denote the rule name
   - Arrows represent how expressions are evaluated.
 
-- Considering the expressions in the basic version of our [previously defined language](({{ site.baseurl }}{% link _lessons/06-languages/ast-evals.md %})), their semantics is:
+- Considering the expressions in the basic version of our [previously defined language]({{ site.baseurl }}{% link _lessons/06-languages/ast-evals.md %}), their semantics is:
 
 ```
  E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
