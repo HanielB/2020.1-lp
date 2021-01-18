@@ -4,9 +4,9 @@ title: Algebraic data types
 ---
 
 # Algebraic data types
-
 {: .no_toc .mb-2 }
 
+- TOC
 {:toc}
 
 ## Readings

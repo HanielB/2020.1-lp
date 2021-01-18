@@ -6,6 +6,7 @@ title: Syntax and semantics
 # Syntax and semantics
 {: .no_toc .mb-2 }
 
+- TOC
 {:toc}
 
 ## Readings

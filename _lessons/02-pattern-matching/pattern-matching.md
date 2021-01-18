@@ -6,6 +6,7 @@ title: Pattern matching
 # Pattern matching
 {: .no_toc .mb-2 }
 
+- TOC
 {:toc}
 
 ## Readings

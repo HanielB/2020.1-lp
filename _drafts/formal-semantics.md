@@ -6,6 +6,7 @@ title: Formal semantics
 # Formal semantics
 {: .no_toc .mb-2 }
 
+- TOC
 {:toc}
 
 ## Readings

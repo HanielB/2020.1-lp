@@ -6,6 +6,7 @@ title: Higher-order functions
 # Higher-order functions
 {: .no_toc .mb-2 }
 
+- TOC
 {:toc}
 
 ## Readings
