@@ -15,7 +15,8 @@ title: Topic 02 - Syntax and semantics of programming languages
 
 11, 13 Jan
 : [**Formal semantics**]({{ site.baseurl }}{% link _lessons/06-languages/formal-semantics.md %})
-  : [Pre-recorded lecture](https://youtube.com/playlist?list=PLeIbBi3CwMZziVG93gcNT__X_xmmtM8ir)
+  : [Pre-recorded lecture: Operational semantics](https://youtube.com/playlist?list=PLeIbBi3CwMZziVG93gcNT__X_xmmtM8ir)
+  : [Pre-recorded lecture: Lambda calculus]()
 : **Q&A**
   : 13:00,
   : 17:00
