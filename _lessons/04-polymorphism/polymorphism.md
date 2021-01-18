@@ -15,9 +15,8 @@ title: Polymorphism
 - [Examples of polymorphism in C++ code](https://homepages.dcc.ufmg.br/~hbarbosa/teaching/ufmg/2020-1/lp/notes/05-polymorphism-c++.cpp)
 - [Introduction to Programming Languages, entries on polymorphism](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages)
 
-## Class notes
 
-### Parametric types in SML
+## Parametric types in SML
 
 ``` ocaml
 datatype ilist = E | L of int * ilist;
@@ -32,7 +31,7 @@ first l;
 first E;
 ```
 
-### Returning the rest of a non-empty ilist
+## Returning the rest of a non-empty ilist
 
 ``` ocaml
 fun rest (L(_, t)) = t
@@ -47,7 +46,7 @@ fun last E = raise Match
 last l;
 ```
 
-### A parametric list
+## A parametric list
 
 ``` ocaml
 datatype 'a plist = E | L of 'a * 'a plist;
@@ -83,7 +82,7 @@ toTriple 1 2.0 (L(1,L(3,E)));
 toTriple 1 2.0 (L(1,L(3,L(9,L(27,E)))));
 ```
 
-### Equality-testable types
+## Equality-testable types
 
 ``` ocaml
 type T0 = int * real;
@@ -104,7 +103,7 @@ first ll1;
 first ll2;
 ```
 
-### Paremeter coercion
+## Paremeter coercion
 
 ``` ocaml
 fun maxAux n E = n
@@ -131,7 +130,7 @@ inlinedMax l2;
 fun max (a,b) = if a > b then a else b;
 ```
 
-### Overloading in SML
+## Overloading in SML
 
 ``` ocaml
 val a = 1 + 2;

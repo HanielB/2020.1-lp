@@ -14,13 +14,11 @@ title: Syntax and semantics
 - Chapters 2, 3 of the textbook
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entries on syntax, grammars in practice, and interpreted programs.
 
-## Class notes
-
-### Languages
+## Languages
 
 [Writing on the board](https://homepages.dcc.ufmg.br/~hbarbosa/teaching/ufmg/2020-1/lp/notes/07-syntax-semantics-writing.png)
 
-### Abstract syntax trees
+## Abstract syntax trees
 
 An algebraic datatype whose values correspond to abstract syntax trees of arithmetic expressions:
 
@@ -63,7 +61,7 @@ is
 val e3 = Minus(Plus(IConst 23, IConst 5), IConst 6);
 ```
 
-### Evaluation
+## Evaluation
 
 Evaluating arithmetic expressions.
 
@@ -107,7 +105,7 @@ eval2 e3;
 Note that `expr + eval2` is a **different** language than `expr + eval`. Even
 though their ASTs are the same their semantics differ.
 
-### Extending expression language: Booleans
+## Extending expression language: Booleans
 
 We can further extend our expression language to encompass Boolean expressions
 and conditionals.
@@ -164,7 +162,7 @@ e4;
 evala e4;
 ```
 
-### Extending expression language: Variables
+## Extending expression language: Variables
 
 We can further expand our language to include *variables*.
 

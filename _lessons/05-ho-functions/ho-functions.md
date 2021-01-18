@@ -14,9 +14,8 @@ title: Higher-order functions
 - Chapter 11 of the textbook
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entries on Higher-Order functions.
 
-## Class notes
 
-### Higher-order functions
+## Higher-order functions
 
 - The order of a function is defined in terms of the order of their parameter and return types.
 
@@ -61,7 +60,7 @@ fun app (f,x) = f x;
 app (hd l, 5);
 ```
 
-### Anonymous functions
+## Anonymous functions
 
 ```ocaml
 val f2 = fn x => ~x;
@@ -70,7 +69,7 @@ f2 3;
 (fn x => ~x) 3;
 ```
 
-### Multiple arguments
+## Multiple arguments
 
 ``` ocaml
 fun f0 (x,y) = x + y;
@@ -80,7 +79,7 @@ fun f1 x = fn y => x + y;
 f1 1 2;
 ```
 
-### Currying
+## Currying
 
 Function application is left-associative, so
 
@@ -114,7 +113,7 @@ f2;
 f3;
 ```
 
-### Combinators
+## Combinators
 
 ``` ocaml
 fun compose f g x = f (g x);
@@ -128,7 +127,7 @@ compose hd tl l 5;
 (compose hd tl l) 5;
 ```
 
-### Map
+## Map
 
 ``` ocaml
 map;
@@ -153,7 +152,7 @@ mymap (op +) [(1,2),(3,4),(5,6)];
 map (op +);
 ```
 
-### Fold (left)
+## Fold (left)
 
 ``` ocaml
 foldl (op +) 0 [1,2,3];
@@ -191,7 +190,7 @@ fun myfoldl _ acc [] = acc
 myfoldl (fn x => fn y => x ^ y) "" ["a","b","c"];
 ```
 
-### Fold (right)
+## Fold (right)
 
 ```ocaml
 foldr;
@@ -232,7 +231,7 @@ fun reverse l = foldl (op ::) [] l;
 reverse [1,2,3];
 ```
 
-### Filter
+## Filter
 
 ``` ocaml
 fun filter _ [] = []

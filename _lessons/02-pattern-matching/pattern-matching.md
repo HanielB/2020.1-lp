@@ -13,9 +13,7 @@ title: Pattern matching
 
 - [Pattern matching](http://en.wikipedia.org/wiki/Pattern_matching/) article
 
-## Class notes
-
-### Introduction
+## Introduction
 
 - Previously we saw basic elements of ML
 - Now we will see how to build programs
@@ -145,7 +143,7 @@ fun f (_::x::_) = x;
   - A cons `::` of patterns is a pattern that matches any nonempty
     list whose head and tail match the sub-patterns.
 
-## Functions with multiple patterns
+# Functions with multiple patterns
 
 - A function may have many patterns:
 

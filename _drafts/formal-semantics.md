@@ -21,9 +21,8 @@ title: Formal semantics
 - [Semantics with applications: an appetizer](https://www.springer.com/gp/book/9781846286919), Chapters 1 and 2.
 - [A bit on the history of computing](http://www.people.cs.uchicago.edu/~soare/History/turing.pdf), Chapters 1-3.
 
-## Class notes
 
-### Overview
+## Overview
 
 - *Syntax* defines what the programs we write look like, while *semantics*
   defines their meaning.
@@ -43,7 +42,7 @@ title: Formal semantics
 
 - Operational semantics specifies, step by step, what happens while a program is executed.
 
-### Notations
+## Notations
 
 **TODO** update for expression language
 
@@ -65,7 +64,7 @@ IConst n -> n
 The above establishes how expressions built with `IConst`, `Plus` and `Minus`
 are evaluated, i.e., in terms of the semantics of `+`, `-`.
 
-#### Big step and small step semantics
+### Big step and small step semantics
 
 - The above is often called "big step semantics", as opposed to "small step
 semantics":
@@ -80,7 +79,7 @@ Plus(E1, E2) -> v1 + v2             Minus(E1, E2) -> v1 - v2
 IConst n -> n
 ```
 
-#### How to define the semantics of ITE?
+### How to define the semantics of ITE?
 
 ```
 
@@ -89,7 +88,7 @@ E1 -> true       E2 -> v2            E1 -> false      E3 -> v3
   if(E1, E2, E3) -> v2                 if(E1, E2, E3) -> v3
 ```
 
-#### How to add variables?
+### How to add variables?
 
 ```
 (E1, C) -> v1    (E2, C) -> v2             (E1, C) -> v1     (E2, C) -> v2
@@ -105,12 +104,12 @@ E1 -> true       E2 -> v2            E1 -> false      E3 -> v3
         (let(x, E1, E2), C) -> v2
 ```
 
-### Static vs dynamic semantics
+## Static vs dynamic semantics
 
 - Static semantics: program meaning known at compilation time.
 - Dynamic semantics: program meaning known at run time.
 
-### Program equivalence
+## Program equivalence
 
 * Semantic equivalence
 17) What does it mean to say that two programs P1 and P2 are equivalent?
@@ -169,7 +168,7 @@ not(be) -> true     (ii) c2 -> v
    if(not(be), c2, c1) -> v
 ```
 
-### The Lambda Calculus
+## The Lambda Calculus
 
 - The lambda calculus is a notation to describe computations
 
@@ -196,7 +195,7 @@ not(be) -> true     (ii) c2 -> v
     theorems](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems),
     which first showed the limits of mathematical logic.
 
-#### Notation
+### Notation
 
 The lambda calculus consists of writing λ-expressions and reducing
 them. Intuitively it is a notation for writing functions and their application.
@@ -235,7 +234,7 @@ This means that λ-expressions follow the syntax:
 Expressions can be manipulated via reductions. Intuitively they correspond to
 computing with functions.
 
-#### Beta (β-reduction)
+### Beta (β-reduction)
 
 - Captures the idea of function application.
 - It is defined via substitution:
@@ -254,7 +253,7 @@ z
 Intuitively `(λx . x)` corresponds to the *identity function*: whatever
 expression it is applied to will be the result of the application.
 
-#### Alpha (α-conversion)
+### Alpha (α-conversion)
 
 - Renames bound variables.
 
@@ -269,7 +268,7 @@ expression it is applied to will be the result of the application.
   - Intuitevely, the names of the bound variables do not change the meaning of the function.
   - Both `(λx . x)` and `(λy . y)` correspond to the identity function.
 
-#### Free and bound variables
+### Free and bound variables
 
 - Not all renaming is legal.
 ```
@@ -328,13 +327,13 @@ expression it is applied to will be the result of the application.
 - The same principle applies to β-reduction: it is applied with capture-avoiding
   substitutions to avoid issues with capture.
 
-#### Encodings
+### Encodings
 
 - With λ-expressions and β-reduction we can do *all computation*. Every
   algorithm that exists.
 - The caveat: you must first encode in λ-expressions whatever you mean.
 
-##### Numbers (Church encoding)
+#### Numbers (Church encoding)
 
 - Encodings are about conventions. We agree on the meaning of something and build accordingly.
 - A number is a function that takes a function `s` plus a constant `z`. The number `N` corresponds to `N` applications of `s` to `z`.
@@ -346,7 +345,7 @@ Two   = λs. λz. s (s z)
 Three = λs. λz. s (s (s z))
 ...
 ```
-####### The successor function
+###### The successor function
 
 ```
 SUCC = λn. λy. λx. y (n y x)
@@ -374,7 +373,7 @@ Two
 And so on. One can prove via induction that `Succ N` is always equal to the
 corresponding natural number of `N` plus one.
 
-######## Addition
+####### Addition
 
 ```
 ADD = λm.λn.λx.λy.m x (n x y)
@@ -415,7 +414,7 @@ computation is merely doing β-reduction. The above is enough to encode
 
 - One can encode anything we are used to bo with computers.
 
-##### Boolean algebra
+#### Boolean algebra
 
 ```
 T  = λx.λy.x
@@ -488,7 +487,7 @@ T F T =
 
 
 
-<!-- #### Eta (η-reduction) -->
+<!-- ### Eta (η-reduction) -->
 
 <!-- - Captures the idea of *extensionality*: functions are equal if and only if they -->
 <!--   always produce the same result on all arguments. -->

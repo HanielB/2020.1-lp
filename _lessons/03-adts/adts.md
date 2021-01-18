@@ -15,9 +15,8 @@ title: Algebraic data types
 - [Introduction to programming languages, chapter 7](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages/Algebraic_Data_Types)
 - [ADTs introduction slide]({{ site.baseurl }}{% link _lessons/03-adts/adts.pdf %})
 
-## Class notes
 
-### Creating our own types
+## Creating our own types
 
 - Defining a type `day` for days of the week
 
@@ -58,7 +57,7 @@ F : real -> element
 They take values of types `int` and `real` and *construct* values of type
 `element`.
 
-### Defining a Boolean algebra
+## Defining a Boolean algebra
 
 The Boolean algebra as two values, `True` and `False`, and operations for
 conjunction (`AND`), disjunction (`OR`), and complement (`NOT`).
@@ -99,7 +98,7 @@ fun eval True = true
 eval prop2;
 ```
 
-### Defining a binary tree
+## Defining a binary tree
 
 An ADT that represents a binary tree with internal nodes labeled with integer
 values and non-labeled leaves:
@@ -239,7 +238,7 @@ fun traverse (Leaf) = []
     end;
 ```
 
-## Exercises
+# Exercises
 
 Given an ADT
 

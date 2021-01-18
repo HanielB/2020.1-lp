@@ -17,9 +17,7 @@ title: SML Introduction
 - [LCF](https://en.wikipedia.org/wiki/Logic_for_Computable_Functions)
 - [Isabelle proof assistant](https://isabelle.in.tum.de/)
 
-## Class notes
-
-### A bit of history
+## A bit of history
 
 - ML was designed by Robin Milner and others on the early seventies.
 
@@ -39,28 +37,28 @@ title: SML Introduction
 
 - We will be using mostly interpreted ML.
 
-### Using the interpreter
+## Using the interpreter
 
 TODO
 
-### Equality types and reals
+## Equality types and reals
 
 TODO
 
-### Lazy evaluation
+## Lazy evaluation
 
 TODO
 
-### Overloaded operators
+## Overloaded operators
 
 TODO
 
-### Variable declaration
+## Variable declaration
 
 TODO
 
-### Tuples
+## Tuples
 
 TODO
 
-### Lists
+## Lists
