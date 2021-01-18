@@ -3,7 +3,6 @@ layout: page
 title: Formal semantics
 ---
 
-
 # Formal semantics
 {: .no_toc .mb-2 }
 
@@ -11,8 +10,15 @@ title: Formal semantics
 
 ## Readings
 
-- Chapters 2, 3 of the textbook
-- [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entries on syntax, grammars in practice, and interpreted programs.
+- (Operational semantics)[http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter8.pdf], Sections Seções 8.5 (you can ignore "completeness and consistency") and 8.6.
+- [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entry on semantics.
+
+- [The lambda calculus](http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter5.pdf), Sections 5.1, 5.2 (pag. 139 to 159).
+
+### Recommended readings
+
+- (Semantics with applications: an appetizer)[https://www.springer.com/gp/book/9781846286919], Chapters 1 and 2.
+- (A bit on the history of computing)[http://www.people.cs.uchicago.edu/~soare/History/turing.pdf], Chapters 1-3.
 
 ## Class notes
 
@@ -161,3 +167,65 @@ not(be) -> true     (ii) c2 -> v
 --------------------------------
    if(not(be), c2, c1) -> v
 ```
+
+### The Lambda Calculus
+
+- The lambda calculus is a notation to describe computations
+
+  - It thus offers a precise formal semantics for programming languages.
+
+- The (Church-Turing thesis)[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis]:
+
+  - The lambda calculus is as powerful as Turing machines.
+
+  - In other words, these are equivalent models of computation, i.e., of
+    defining *algorithms*.
+
+  - Turing and Churcil indepedently proved, in 1936, that:
+    - program termination is undecidable (with Turing machines)
+    - program equivalence is undecidable (with lambda calculus)
+
+  - Thus both showed that the
+    (*Entscheidungsproblem*)[https://en.wikipedia.org/wiki/Entscheidungsproblem],
+    to David Hilbert's dismay, has a negative anwser:
+    - There are undecidable problems. There are problems which we *cannot*
+    solve, for every instance of the problem, with algorithms.
+
+#### Notation
+
+```
+<expr> ::= <name>
+         | \lambda <name> . <expr>
+         | <expr> <expr>
+```
+
+A λ-expression is either a:
+- variable
+  - `x`
+- λ-abstraction
+  - `λ x . xx`
+- application
+  - `(λ x . xx) z`
+
+
+
+
+#### Lambda reductions
+
+##### Alpha
+
+##### Beta
+
+##### Eta
+
+##### Reduction strategies
+
+
+O Cálculo Lambda é uma notação para descrever computações tão poderosa quanto o máquina de Turing.
+Variáveis livres.
+Funções Currificadas.
+Reduções Lambda:
+Reduções alfa.
+Reduções beta.
+Reduções eta.
+Existem diferentes estratégias de redução.
