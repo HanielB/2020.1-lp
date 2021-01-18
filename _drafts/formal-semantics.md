@@ -187,40 +187,71 @@ not(be) -> true     (ii) c2 -> v
 
   - Thus both showed that the
     [*Entscheidungsproblem*](https://en.wikipedia.org/wiki/Entscheidungsproblem),
-    to David Hilbert's dismay, has a negative anwser:
+    to David Hilbert's dismay, is unsolvable.
     - There are undecidable problems. There are problems which we *cannot*
     solve, for every instance of the problem, with algorithms.
 
+  - Both built on Kurt Gödel's [incompleteness
+    theorems](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems),
+    which first showed the limits of mathematical logic.
+
 #### Notation
 
-```
-<expr> ::= <name>
-         | \lambda <name> . <expr>
-         | <expr> <expr>
-```
+The lambda calculus consists of writing λ-expressions and reducing
+them. Intuitively it is a notation for writing functions and their application.
 
-A λ-expression is either a:
-- variable
+A λ-expression is either:
+- a variable
 ```
 x
 ```
 
-- λ-abstraction
+- an abstraction ("a function")
+
 ```
 λ x . x
 ```
 
-- application
+in which the variable after the lambda is called its *bound variable* and the
+expression after the dot its *body*.
+
+- an application ("of a function to an argument")
 ```
 (λ x . x) z
 ```
 
+in which the right term is the argument of the application.
+
+This means that λ-expressions follow the syntax:
+
+```
+<expr> ::= <name>
+         | (\lambda <name> . <expr>)
+         | (<expr> <expr>)
+```
 
 #### Lambda reductions
 
-##### Alpha (α-reduction)
+The following rules are used to reduce λ-expressions. Intuitively the correspond
+to computing with functions.
 
 ##### Beta (β-reduction)
+
+- Captures the idea of function application.
+- It is defined via substitution:
+  - an application is β-reduced via the replacement, in the body of the
+  abstraction, of all occurrences of the bound variable by the argument of the
+  application.
+
+```
+(λ x . x) z
+=>_β
+z
+```
+
+##### Alpha (α-conversion)
+
+Renames bound variables.
 
 ##### Eta (η-reduction)
 
