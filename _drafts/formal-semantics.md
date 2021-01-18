@@ -174,7 +174,7 @@ not(be) -> true     (ii) c2 -> v
 
   - It thus offers a precise formal semantics for programming languages.
 
-- The (Church-Turing thesis)[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis]:
+- The [Church-Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis):
 
   - The lambda calculus is as powerful as Turing machines.
 
@@ -186,7 +186,7 @@ not(be) -> true     (ii) c2 -> v
     - program equivalence is undecidable (with lambda calculus)
 
   - Thus both showed that the
-    (*Entscheidungsproblem*)[https://en.wikipedia.org/wiki/Entscheidungsproblem],
+    [*Entscheidungsproblem*](https://en.wikipedia.org/wiki/Entscheidungsproblem),
     to David Hilbert's dismay, has a negative anwser:
     - There are undecidable problems. There are problems which we *cannot*
     solve, for every instance of the problem, with algorithms.
@@ -201,11 +201,11 @@ not(be) -> true     (ii) c2 -> v
 
 A λ-expression is either a:
 - variable
-  - `x`
+  `x`
 - λ-abstraction
-  - `λ x . xx`
+  `λ x . xx`
 - application
-  - `(λ x . xx) z`
+  `(λ x . xx) z`
 
 
 
