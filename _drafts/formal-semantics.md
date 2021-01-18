@@ -415,7 +415,7 @@ computation is merely doing β-reduction. The above is enough to encode
 
 - One can encode anything we are used to bo with computers.
 
-###### Boolean algebra
+##### Boolean algebra
 
 ```
 T  = λx.λy.x
@@ -437,9 +437,10 @@ AND T F = ?
 
 {{
 "```
-(λx.λy.xyF) T F =
+AND T F =
+(λx.λy.xyF) T F =>_β
 T F F =
-(λx.λy.x) F F = F
+(λx.λy.x) F F =>_β F
 ```"
 | markdownify}}
 
@@ -455,9 +456,10 @@ OR F T = ?
 
 {{
 "```
-(λx.λy.xTy) F T =
+OR F T
+(λx.λy.xTy) F T =>_β
 F T T =
-(λx.λy.y) T T = T
+(λx.λy.y) T T =>_β T
 ```"
 | markdownify}}
 
@@ -474,9 +476,10 @@ NOT T = ?
 
 {{
 "```
-(λx.xFT) T =
+NOT T
+(λx.xFT) T =>_β
 T F T =
-(λx.λy.x) F T = F
+(λx.λy.x) F T =>_β F
 ```"
 | markdownify}}
 
