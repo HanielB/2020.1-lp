@@ -201,31 +201,27 @@ not(be) -> true     (ii) c2 -> v
 
 A λ-expression is either a:
 - variable
-  `x`
+```
+x
+```
+
 - λ-abstraction
-  `λ x . xx`
+```
+λ x . x
+```
+
 - application
-  `(λ x . xx) z`
-
-
+```
+(λ x . x) z
+```
 
 
 #### Lambda reductions
 
-##### Alpha
+##### Alpha (α-reduction)
 
-##### Beta
+##### Beta (β-reduction)
 
-##### Eta
+##### Eta (η-reduction)
 
 ##### Reduction strategies
-
-
-O Cálculo Lambda é uma notação para descrever computações tão poderosa quanto o máquina de Turing.
-Variáveis livres.
-Funções Currificadas.
-Reduções Lambda:
-Reduções alfa.
-Reduções beta.
-Reduções eta.
-Existem diferentes estratégias de redução.
