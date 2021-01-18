@@ -17,8 +17,8 @@ title: Formal semantics
 
 ### Recommended readings
 
-- (Semantics with applications: an appetizer)[https://www.springer.com/gp/book/9781846286919], Chapters 1 and 2.
-- (A bit on the history of computing)[http://www.people.cs.uchicago.edu/~soare/History/turing.pdf], Chapters 1-3.
+- [Semantics with applications: an appetizer](https://www.springer.com/gp/book/9781846286919), Chapters 1 and 2.
+- [A bit on the history of computing](http://www.people.cs.uchicago.edu/~soare/History/turing.pdf), Chapters 1-3.
 
 ## Class notes
 
