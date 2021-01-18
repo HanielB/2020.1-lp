@@ -210,7 +210,7 @@ x
 - an abstraction ("a function")
 
 ```
-λ x . x
+λx . x
 ```
 
 in which the variable after the lambda is called its *bound variable* and the
@@ -218,10 +218,11 @@ expression after the dot its *body*.
 
 - an application ("of a function to an argument")
 ```
-(λ x . x) z
+(λx . x) z
 ```
 
-in which the right term is the argument of the application.
+in which the right term is the argument of the application. When written without
+parenthesis assume left-associativity.
 
 This means that λ-expressions follow the syntax:
 
@@ -245,12 +246,12 @@ computing with functions.
 - Consider the example application above:
 
 ```
-(λ x . x) z
+(λx . x) z
 =>_β
 z
 ```
 
-Intuitively `(λ x . x)` corresponds to the *identity function*: whatever
+Intuitively `(λx . x)` corresponds to the *identity function*: whatever
 expression it is applied to will be the result of the application.
 
 #### Alpha (α-conversion)
@@ -258,23 +259,23 @@ expression it is applied to will be the result of the application.
 - Renames bound variables.
 
 ```
-(λ x . x)
+(λx . x)
 =>_α
-(λ y . y)
+(λy . y)
 ```
 
 - Expressions that are only different in the names of their bound variables are
   called *α-equivalent*.
   - Intuitevely, the names of the bound variables do not change the meaning of the function.
-  - Both `(λ x . x)` and `(λ y . y)` correspond to the identity function.
+  - Both `(λx . x)` and `(λy . y)` correspond to the identity function.
 
 #### Free and bound variables
 
 - Not all renaming is legal.
 ```
-(λ x . (λ y . y x))
+(λx . (λy . y x))
 =>_α
-(λ y . (λ y . y y))
+(λy . (λy . y y))
 ```
 - This renaming changes what the function computes, as `x` was renamed to a
   variable, `y`, that was *not free* in the body of the expression.
@@ -291,7 +292,7 @@ expression it is applied to will be the result of the application.
 
 - Free variables are those that are *not* bound by any lambda abstraction enclosing it.
   ```
-  (λ w . z w)
+  (λw . z w)
   ```
    - In the body of the expression `w` is bound while `z` is free.
 
@@ -304,7 +305,7 @@ expression it is applied to will be the result of the application.
   - In the above example, to do a substitution of `x:=y` on `(λ x . (λ y . y x))`, written
 
   ```
-  (λ x . (λ y . y x))[x:=y]
+  (λx . (λy . y x))[x:=y]
   ```
 
   we will do `(λ y . y x)[x:=y]`. Since `y` is bound in the expression in which
@@ -312,17 +313,177 @@ expression it is applied to will be the result of the application.
 
 
    ```
-   (λ y . y x) =>_α (λ z . z x)
+   (λy . y x) =>_α (λz . z x)
    ```
 
-   Now we can do `(λ z . z x)[x:= y]` so that the variable `x`, which was is
+   Now we can do `(λz . z x)[x:= y]` so that the variable `x`, which was is
    free in this expression, does not become bound by it. Thus we obtain:
    ```
-   (λ x . (λ y . y x))
+   (λx . (λy . y x))
    =>_α
-   (λ y . (λ z . z y))
+   (λy . (λz . z y))
    ```
    which are equivalent functions.
+
+- The same principle applies to β-reduction: it is applied with capture-avoiding
+  substitutions to avoid issues with capture.
+
+#### Encodings
+
+- With λ-expressions and β-reduction we can do *all computation*. Every
+  algorithm that exists.
+- The caveat: you must first encode in λ-expressions whatever you mean.
+
+##### Numbers (Church encoding)
+
+- Encodings are about conventions. We agree on the meaning of something and build accordingly.
+- A number is a function that takes a function `s` plus a constant `z`. The number `N` corresponds to `N` applications of `s` to `z`.
+
+```
+Zero  = λs. λz. z
+One   = λs. λz. s z
+Two   = λs. λz. s (s z)
+Three = λs. λz. s (s (s z))
+...
+```
+####### The successor function
+
+```
+SUCC = λn. λy. λx. y (n y x)
+```
+
+- If we apply the successor function to `Zero` we must obtain `One`:
+
+```
+SUCC Zero =
+  (λn.λy.λx.y(nyx))(λs.λz.z) =>_β
+  λy.λx.y((λs.λz.z)yx) =>_β
+  λy.λx.yx =
+One
+```
+- Similarly, we should obtain that `SUCC One = Two`
+
+```
+SUCC One =
+  (λn.λy.λx.y(nyx))(λs.λz.sz) =>_β
+  λy.λx.y((λs.λz.sz)yx) =>_β
+  λy.λx.y(yx) =
+Two
+```
+
+And so on. One can prove via induction that `Succ N` is always equal to the
+corresponding natural number of `N` plus one.
+
+######## Addition
+
+```
+ADD = λm.λn.λx.λy.m x (n x y)
+```
+
+- Again we can see the expected behavior with examples:
+
+```
+ADD Two Three =
+ (λm.λn.λx.λy.m x (n x y)) Two Three =>_β
+ λx.λy.Two x (Three x y) =>_β
+ λx.λy.Two x (x (x (x y))) =>_β
+ λx.λy.(λs.λz.s (s z)) x (x (x (x y))) =>_β
+ λx.λy.x (x (x (x (x y)))) =
+Five
+```
+- Note that addition can be defined in terms of the successor function
+- Summing `n` with `m` corresponds to applying the successor function `n` times to `m`.
+  - Our number encoding is precisely "number `N` is applying function `s` to constant `z` `N` times", i.e.,
+  ```
+  ADD = λm. λn. m SUCC n
+  ```
+
+- Rephrasing the above example:
+```
+ADD Two Three =
+ Two SUCC Three =
+  (λs.λz.s (s z)) SUCC Three =>_β
+  (λz. SUCC (SUCC z)) Three =>_β
+  SUCC (SUCC Three) =>_β
+  SUCC Four =>_β
+Five
+```
+
+Note that all complexity lies in *how to encode*. Once the encoding done
+computation is merely doing β-reduction. The above is enough to encode
+[Presburger arithmetic ](https://en.wikipedia.org/wiki/Presburger_arithmetic).
+
+- One can encode anything we are used to bo with computers.
+
+###### Boolean algebra
+
+```
+T  = λx.λy.x
+F = λx.λy.y
+AND   = λx.λy.xyF
+OR    = λx.λy.xTy
+NOT   = λx.xFT
+```
+
+- Try it youlself
+
+```
+AND T F = ?
+```
+
+<details>
+<summary>Solution</summary>
+<p>
+
+{{
+"```
+(λx.λy.xyF) T F =
+T F F =
+(λx.λy.x) F F = F
+```"
+| markdownify}}
+
+</p>
+</details>
+
+```
+OR F T = ?
+```
+<details>
+<summary>Solution</summary>
+<p>
+
+{{
+"```
+(λx.λy.xTy) F T =
+F T T =
+(λx.λy.y) T T = T
+```"
+| markdownify}}
+
+</p>
+</details>
+
+```
+NOT T = ?
+```
+
+<details>
+<summary>Solution</summary>
+<p>
+
+{{
+"```
+(λx.xFT) T =
+T F T =
+(λx.λy.x) F T = F
+```"
+| markdownify}}
+
+</p>
+</details>
+
+
 
 <!-- #### Eta (η-reduction) -->
 
