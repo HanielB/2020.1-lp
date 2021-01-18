@@ -501,7 +501,7 @@ OR    = λx.λy.xTy
 NOT   = λx.xFT
 ```
 
-- Try it youlself
+- Try it yourself
 
 ```
 AND T F = ?
