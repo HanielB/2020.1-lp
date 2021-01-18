@@ -42,6 +42,7 @@ title: Formal semantics
   - Specifies, step by step, what happens while a program is executed.
 
 - [Writing on the board for operational semantics]({{ site.baseurl }}{% link _lessons/06-languages/formal-semantics.png %})
+- [Writing on the board for lambda calculus]({{ site.baseurl }}{% link _lessons/06-languages/lambda-calculus.png %})
 
 ## Operational semantics
 
