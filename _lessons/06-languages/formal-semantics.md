@@ -405,7 +405,7 @@ expression it is applied to will be the result of the application.
   algorithm that exists.
 - The caveat: you must first encode in λ-expressions whatever you mean.
 
-### Numbers (Church encoding)
+### Numbers (Church numerals)
 
 - Encodings are about conventions. We agree on the meaning of something and build accordingly.
 - A number is a function that takes a function `s` plus a constant `z`. The number `N` corresponds to `N` applications of `s` to `z`.
@@ -483,7 +483,7 @@ Note that all complexity lies in *how to encode*. Once the encoding is done,
 computation is merely doing β-reduction.
 
 
-### Boolean algebra
+### Boolean algebra (Church Booleans)
 
 ```
 T  = λx.λy.x
