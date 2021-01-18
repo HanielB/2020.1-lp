@@ -230,12 +230,10 @@ This means that λ-expressions follow the syntax:
          | (<expr> <expr>)
 ```
 
-#### Lambda reductions
+Expressions can be manipulated via reductions. Intuitively they correspond to
+computing with functions.
 
-The following rules are used to reduce λ-expressions. Intuitively the correspond
-to computing with functions.
-
-##### Beta (β-reduction)
+#### Beta (β-reduction)
 
 - Captures the idea of function application.
 - It is defined via substitution:
@@ -243,16 +241,99 @@ to computing with functions.
   abstraction, of all occurrences of the bound variable by the argument of the
   application.
 
+- Consider the example application above:
+
 ```
 (λ x . x) z
 =>_β
 z
 ```
 
-##### Alpha (α-conversion)
+Intuitively `(λ x . x)` corresponds to the *identity function*: whatever
+expression it is applied to will be the result of the application.
 
-Renames bound variables.
+#### Alpha (α-conversion)
 
-##### Eta (η-reduction)
+- Renames bound variables.
 
-##### Reduction strategies
+```
+(λ x . x)
+=>_α
+(λ y . y)
+```
+
+- Expressions that are only different in the names of their bound variables are
+  called *α-equivalent*.
+  - Intuitevely, the names of the bound variables do not change the meaning of the function.
+  - Both `(λ x . x)` and `(λ y . y)` correspond to the identity function.
+
+#### Free and bound variables
+
+- Not all renaming is legal.
+```
+(λ x . (λ y . y x))
+=>_α
+(λ y . (λ y . y y))
+```
+- This renaming changes what the function computes, as `x` was renamed to a
+  variable, `y`, that was *not free* in the body of the expression.
+  - As example, consider the following SML code:
+
+  ``` ocaml
+  val y = 1
+  fun f1 x = y + x
+  fun f2 z = y + z
+  fun f3 y = y + y
+  ```
+  You will note that `f1` and `f2` are equivalent, while `f1` and `f3` are not.
+
+
+- Free variables are those that are *not* bound by any lambda abstraction enclosing it.
+  ```
+  (λ w . z w)
+  ```
+   - In the body of the expression `w` is bound while `z` is free.
+
+- To avoid this issue, α-conversion must be applied with *capture-avoiding*
+  substitutions:
+  - When recursively traversing the expression to apply the subsitution, if the
+    range of the substitution contains a variable that is bound in an
+    abstraction, rename the bound variable so that the free variable is not
+    *captured*.
+  - In the above example, to do a substitution of `x:=y` on `(λ x . (λ y . y x))`, written
+
+  ```
+  (λ x . (λ y . y x))[x:=y]
+  ```
+
+  we will do `(λ y . y x)[x:=y]`. Since `y` is bound in the expression in which
+  we are doing the substitution, we rename the bound variable to avoid capture:
+
+
+   ```
+   (λ y . y x) =>_α (λ z . z x)
+   ```
+
+   Now we can do `(λ z . z x)[x:= y]` so that the variable `x`, which was is
+   free in this expression, does not become bound by it. Thus we obtain:
+   ```
+   (λ x . (λ y . y x))
+   =>_α
+   (λ y . (λ z . z y))
+   ```
+   which are equivalent functions.
+
+<!-- #### Eta (η-reduction) -->
+
+<!-- - Captures the idea of *extensionality*: functions are equal if and only if they -->
+<!--   always produce the same result on all arguments. -->
+
+<!-- - The intuition is that an abstraction can be lifted when its application -->
+<!--   corresponds to the application of the expression within it -->
+
+<!-- ``` -->
+<!-- (λ x . f x) -->
+<!-- =>_η -->
+<!-- f -->
+<!-- ``` -->
+<!-- if `f` does not contain `x` free. -->
