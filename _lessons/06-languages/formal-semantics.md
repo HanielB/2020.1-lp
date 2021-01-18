@@ -11,7 +11,7 @@ title: Formal semantics
 
 ## Readings
 
-- (Operational semantics)[http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter8.pdf], Sections Seções 8.5 (you can ignore "completeness and consistency") and 8.6.
+- [Operational semantics](http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter8.pdf), Sections Seções 8.5 (you can ignore "completeness and consistency") and 8.6.
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entry on semantics.
 
 - [The lambda calculus](http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter5.pdf), Sections 5.1, 5.2 (pag. 139 to 159).
