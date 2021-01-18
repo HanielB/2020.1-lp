@@ -20,7 +20,8 @@ title: Formal semantics
 
 - [Semantics with applications: an appetizer](https://www.springer.com/gp/book/9781846286919), Chapters 1 and 2.
 - [A bit on the history of computing](http://www.people.cs.uchicago.edu/~soare/History/turing.pdf), Chapters 1-3.
-
+- [A Minimalistic Verified Bootstrapped Compiler](https://popl21.sigplan.org/details/CPP-2021/6/A-Minimalistic-Verified-Bootstrapped-Compiler-Proof-Pearl-)
+  A recent paper on writing a simple compiler with a full formal semantics that is proven *correct*, i.e., that the x86 assembly code it produces is equivalent to the original code.
 
 ## Overview
 
@@ -35,23 +36,22 @@ title: Formal semantics
 
   - However, how do we define the semantics of `L2`?
 
-- There are formal notations to define the semantics of programming languages. For example:
-  - Operational semantics
-  - Axiomatic semantics
-  - Denotational semantics
+- There are formal notations to define the semantics of programming languages. A
+  common way is with *operational semantics*:
+  - Specifies, step by step, what happens while a program is executed.
 
-- Operational semantics specifies, step by step, what happens while a program is executed.
+## Operational semantics
 
-## Notations
+- The specification of an execution is step is given by *inference rules*
 
-**TODO** update for expression language
-
-- Judements for writing inference rules:
+- *Judgements* for writing inference rules:
   - Premises are written above the line.
   - Conclusion below the line.
   - Label by the lines denote the rule name
   - Arrows represent how expressions are evaluated.
 
+- Considering the expressions in the basic version of our [previously defined language](({{ site.baseurl }}{% link _lessons/06-languagen/ast-eval.md %})), their semantics is:
+
 ```
  E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
 ------------------------ EvPlus     -------------------------- EvMinus
@@ -61,112 +61,186 @@ Plus(E1, E2) -> v1 + v2             Minus(E1, E2) -> v1 - v2
 IConst n -> n
 ```
 
-The above establishes how expressions built with `IConst`, `Plus` and `Minus`
-are evaluated, i.e., in terms of the semantics of `+`, `-`.
+- The above establishes how expressions built with `IConst`, `Plus` and `Minus`
+are evaluated, i.e., in terms of the semantics of the arithmetic functions `+`,
+`-`.
+    - Note this is not dependent on a programming language but on arithmetic
+      itself.
 
 ### Big step and small step semantics
 
-- The above is often called "big step semantics", as opposed to "small step
-semantics":
-  - only one computation at a time
+- The above is often called "big step semantics" (also "natural semantics")
+- There is also "small step semantics", in which a rule does only one
+  computation ("one step") at a time:
 
 ```
- E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
------------------------- EvPlus     -------------------------- EvMinus
-Plus(E1, E2) -> v1 + v2             Minus(E1, E2) -> v1 - v2
+          E1 -> E1'                             E1 -> E1'
+-----------------------------EvPlus1      ---------------------------------EvMinus1
+Plus(E1, E2) -> Plus(E1', E2)             Minus(E1, E2) -> Minus(E1', E2)
 
-------------- EvIConst
+          E2 -> E2'                             E2 -> E2'
+-----------------------------EvPlus2      ---------------------------------EvMinus2
+Plus(E1, E2) -> Plus(E1, E2')             Minus(E1, E2) -> Minus(E1, E2')
+
+    E -> E'
+---------------EvIConst
 IConst n -> n
+
+-----------------------EvPlusV   -------------------------EvMinusV
+Plus(v1, v2) -> v1 + v2           Minus(v1, v2) -> v1 - v2
 ```
 
-### How to define the semantics of ITE?
+### How to define the semantics of `Ite`?
 
+- Let's go back to use big step semantics.
+- Since `Ite` relies on Boolean expressions, we must define their semantics as well.
+
+ ```
+ E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
+------------------------EvAnd     --------------------------EvMinus
+And(E1, E2) -> v1 ∧ v2               Or(E1, E2) -> v1 v v2
+
+                                    E -> v
+-------------EvBConst             ---------------EvNot
+BConst n -> n                       Not(E) -> ¬v1
 ```
 
-E1 -> true       E2 -> v2            E1 -> false      E3 -> v3
--------------------------     or     -------------------------
-  if(E1, E2, E3) -> v2                 if(E1, E2, E3) -> v3
+- Now we can define the rules for `Ite`
+```
+E1 -> true       E2 -> v2                E1 -> false      E3 -> v3
+-------------------------EvIteT   or     --------------------------EvIteF
+  Ite(E1, E2, E3) -> v2                   Ite(E1, E2, E3) -> v3
 ```
 
-### How to add variables?
+Note that the above rules rely on Boolean logic itself.
+
+### Evaluation as derivation trees
+
+- Evaluating an expression corresponds to bulding a *derivation tree*
+  - the root of the tree is the evaluation of the original expression
+  - the premises must be roots of subtrees justifying their evaluations and so on
+
+- The derivation tree below corresponds to the evaluotion of `Plus(IConst 0, Minus(IConst 3, IConst 2))`
 
 ```
-(E1, C) -> v1    (E2, C) -> v2             (E1, C) -> v1     (E2, C) -> v2
-------------------------------             -------------------------------
- (plus(E1, E2), C) -> v1 + v2               (times(E1, E2), C) -> v1 * v2
-
-
-(var(v), C) -> lookup(C, v)                (const(n), C) -> eval(n)
-
-
-(E1, C) -> v1    (E2, [bind(x, v1)|C]) -> v2
---------------------------------------------
-        (let(x, E1, E2), C) -> v2
+                       -------------EvIConst  -------------EvIConst
+                       IConst 3 -> 3          IConst 2 -> 2
+-------------EvIConst  --------------------------------------EvMinus
+IConst 0 -> 0          Minus(IConst 3, IConst 2) -> 3 - 2 = 1
+--------------------------------------------------------------EvPlus
+  Plus(IConst 0, Minus(IConst 3, IConst 2)) -> 0 + 1 = 1
 ```
 
-## Static vs dynamic semantics
+### Static vs dynamic semantics
 
 - Static semantics: program meaning known at compilation time.
-- Dynamic semantics: program meaning known at run time.
+  - Type errors
+  - Use of undefined variables
 
-## Program equivalence
+- Dynamic semantics: program meaning known at run time
+  - Memory management errors can be very hard to detect statically.
 
-* Semantic equivalence
-17) What does it mean to say that two programs P1 and P2 are equivalent?
-<P1, B> -> <v, B'> iff <P2, B> -> <v, B'>
-- or -
-<P1, B> -> stuck iff <P2, B> -> stuck
+#### Program equivalence
 
-18) Prove that
-if be then c1 else c2 == if not(be) then c2 else c1
+- With a formal semantics we can reason statically about programs
+- We can for example possibly prove that two programs are equivalent
+  - To say that two programs `P1` and `P2` are equivalent:
+  ```
+P1 -> v iff P2 -> v
+  ```
+  i.e., they produce the same value *when they produce some value*. Such proofs
+  can be done in general via induction on the derivation trees that can be built
+  with the inference rules used to evaluate the expression.
 
-The proof is by induction on the rules used to evaluate the expression.
-
-18.1) What are these rules?
-
-```
-be -> true     c1 -> v                      be -> true
----------------------- IfTrue           ----------------- NotTrue
- if(be, c1, c2) -> v                     not(be) -> false
-
-be -> false     c2 -> v                      be -> false
----------------------- IfFalse           ----------------- NotFalse
- if(be, c1, c2) -> v                      not(be) -> true
-```
-
-Case 1)
+- Let's consider the following program equivalence problem, for programs in our
+  expression language with the above semantics. Prove that
 
 ```
-be -> true       c1 -> v
-------------------------
-  if(be, c1, c2) -> v
+Ite(c,e1,e2) = Ite(Not(c),e2,e1)
+```
+  for *any* expression `c`, `e1`, `e2` (of the correct types for the constructor `Ite`).
+
+
+- Since `c` is a Boolean expression, it can be evaluated either to `true` or to
+  `false`. We consider each case:
+  - Case 1: `c -> true`
+
+    The derivation of `P1` will be:
+```
+...            ...
+---------      --------
+c -> true       e1 -> v
+------------------------EvIteT
+  Ite(c, e1, e2) -> v
 ```
 
-What do we know? We know that (i) "be -> true" and (ii) "c1 -> v"
-From (i) and rule NotTrue we know that "not(be) -> false", thus:
-
+    Since `c -> true`, we know that
 ```
-not(be) -> false       (ii) c1 -> v
------------------------------------
-    if(not(be), c2, c1) -> v
-```
-
-Case 2)
-
-```
-be -> false      c2 -> v
-------------------------
-  if(be, c1, c2) -> v
+...
+---------
+c -> true
+----------------EvNot
+Not(c) -> false
 ```
 
-What we know? We know that (i) "be -> false" and (ii) "c2 -> v"
-From (i) plus NotFalse we know that "not(be) -> true", thus:
+thus the derivation of `P2` will be
+```
+...
+---------
+c -> true                  ....
+----------------EvNot    --------
+Not(c) -> false           e1 -> v
+----------------------------------EvIteF
+  Ite(Not(c), e2, e1) -> v
+```
 
+  - Case 2: `c -> false`
+  Try it yourself. :)
+<details>
+<summary>Solution</summary>
+<p>
+
+{{
+"
+The derivation of `P1` will be:
 ```
-not(be) -> true     (ii) c2 -> v
---------------------------------
-   if(not(be), c2, c1) -> v
+...            ...
+---------      --------
+c -> false      e2 -> v
+------------------------EvIteF
+  Ite(c, e1, e2) -> v
 ```
+Since `c -> false`, we know that
+```
+...
+---------
+c -> false
+----------------EvNot
+Not(c) -> false
+```
+
+thus the derivation of `P2` will be
+```
+...
+---------
+c -> false                  ....
+----------------EvNot    --------
+Not(c) -> true           e2 -> v
+----------------------------------EvIteT
+  Ite(Not(c), e2, e1) -> v
+```"
+| markdownify}}
+
+</p>
+</details>
+
+
+- In all generality one needs to consider as well the non-terminating executions:
+```
+P1 -> stuck iff P2 -> stuck
+```
+  for some notion of "stuck".
+
 
 ## The Lambda Calculus
 
@@ -373,7 +447,7 @@ Two
 And so on. One can prove via induction that `Succ N` is always equal to the
 corresponding natural number of `N` plus one.
 
-####### Addition
+###### Addition
 
 ```
 ADD = λm.λn.λx.λy.m x (n x y)
