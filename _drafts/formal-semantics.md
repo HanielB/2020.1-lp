@@ -20,8 +20,8 @@ title: Formal semantics
 
 - [Semantics with applications: an appetizer](https://www.springer.com/gp/book/9781846286919), Chapters 1 and 2.
 - [A bit on the history of computing](http://www.people.cs.uchicago.edu/~soare/History/turing.pdf), Chapters 1-3.
-- [A Minimalistic Verified Bootstrapped Compiler](https://popl21.sigplan.org/details/CPP-2021/6/A-Minimalistic-Verified-Bootstrapped-Compiler-Proof-Pearl-)
-  A recent paper on writing a simple compiler with a full formal semantics that is proven *correct*, i.e., that the x86 assembly code it produces is equivalent to the original code.
+- [A Minimalistic Verified Bootstrapped Compiler](https://popl21.sigplan.org/details/CPP-2021/6/A-Minimalistic-Verified-Bootstrapped-Compiler-Proof-Pearl-):
+  A recent paper on writing a simple compiler with a full formal semantics that is *verified correct*, i.e., proves that the x86 assembly code it produces is equivalent to the original code.
 
 ## Overview
 
@@ -50,7 +50,7 @@ title: Formal semantics
   - Label by the lines denote the rule name
   - Arrows represent how expressions are evaluated.
 
-- Considering the expressions in the basic version of our [previously defined language](({{ site.baseurl }}{% link _lessons/06-languagen/ast-eval.md %})), their semantics is:
+- Considering the expressions in the basic version of our [previously defined language](({{ site.baseurl }}{% link _lessons/06-languages/ast-evals.md %})), their semantics is:
 
 ```
  E1 -> v1      E2 -> v2              E1 -> v1      E2 -> v2
