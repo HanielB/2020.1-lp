@@ -1,46 +1,72 @@
-Control.Print.printDepth := 100;
+---
+layout: page
+title: Closures
+---
 
-(* How can we bind functional values? *)
+# Closures
+{: .no_toc .mb-2 }
+
+- TOC
+{:toc}
+
+## Binding function values
+
+We declare functional values in SML for example with
+```ocaml
 fun f x = x + 1;
 f 1;
+```
+We will now investigate in detail what is going on there.
 
-(* This declaration corresponds to binding a to 5 and retrieving the
-value 5, from the environment state, when a + 5 is evaluated. *)
+Consider
+``` ocaml
 val a = 5;
 a + 5;
+```
+It binds `a` to `5` and then retrieves the
+value `5`, from the interpreter state, when `a + 5` is evaluated.
 
-(* In this declaration we need to bind f to a value in the environment
-that, when evaluated in f 1, is so that the parameter of f is
-instantiated with 1 and the symbol defined in its declaring scope,
-i.e., a, is mapped to its value at that moment. So when evaluating "f
-1" we have as a result x + a{x-> 1, a -> 5} = 1 + 5 = 6. *)
+Now consider
+``` ocaml
 fun f x = x + a;
 f 1;
+```
 
-(* Changing the value of free symbol's from f's body does not change
-its evaluation since the declaration environment is saved in f's
-value. *)
+In the declaration we need to bind `f` to a value in the environment that, when
+evaluated in `f 1`, is so that the parameter of `f` is instantiated with `1` and
+the symbol defined in its declaring scope, i.e., `a`, is mapped to its value at
+that moment. So when evaluating `f 1` we have as a result `x + a{x-> 1, a -> 5}
+= 1 + 5 = 6`.
+
+Changing the value of free symbol's from `f`'s body does not change
+its evaluation since the declaration environment is saved in `f`'s
+value.
+``` ocaml
 val a = 3;
 f 1;
+```
 
-(* A closure will be defined as a tuple
+## Closures
 
-  (f, x, fBody, fDeclEnv)
+A closure will be defined as a tuple
+```
+(f, x, fBody, fDeclEnv)
+```
+in which
 
- where
+-  f         -> name of the function
+-  x         -> argument of the function
+-  fBody     -> definition of the function
+-  fDeclEnv  -> definitions of the free variables in fBody in the scope in which f was declared.
 
-  f         -> name of the function
-  x         -> argument of the function
-  fBody     -> definition of the function
-  fDeclEnv  -> definitions of the free variables in fBody in the scope
-  in which f was declared.
+In the above example the value of f is:
+```
+("f", "x", "x + a", [("a", 5)])
+```
 
- In the above example the value of f is:
+## Generalizing the expression language
 
-  ("f", "x", "x + a", [("a", 5)])
-*)
-
-(* Generalizing the expression language for Booleans *)
+``` ocaml
 datatype expr =
          IConst of int
          | BConst of bool
@@ -55,29 +81,46 @@ datatype expr =
          | LetFun of string * string * expr * expr
          (* For evaluating closure values *)
          | Call of expr * expr;
+```
 
-(* Defining the state, which will map to variables, functional or not, to values *)
+We first defining the state, which will map variables, functional or not, to values.
+``` ocaml
 type 'v env = (string * 'v) list;
+```
 
-(* Values will be integers or closures *)
+Values will be integers or closures
+``` ocaml
 datatype value =
          Int of int
          (* (f, x, fBody, (freeVars f) -> their values) *)
          | Closure of string * string * expr * value env;
+```
 
-exception EvalError;
-exception PrimError;
+Values will be retrieved from lookups in the state.
+
+``` ocaml
 exception FreeVar;
 
 fun lookup [] id = raise FreeVar
   | lookup ((k:string, v)::t) id = if k = id then v else lookup t id;
+```
 
+We define conversion functions between integer and Booleans to facilitate the evaluation function below.
+
+``` ocaml
 fun intToBool 1 = true
   | intToBool 0 = false
   | intToBool _ = raise Match;
 
 fun boolToInt true = 1
   | boolToInt false = 0;
+```
+
+The evaluation function of an expression language with function declarations and invocations.
+
+``` ocaml
+exception EvalError;
+exception PrimError;
 
 fun eval (e:expr) (st: (string * value) list) : int =
     case e of
@@ -129,8 +172,11 @@ fun eval (e:expr) (st: (string * value) list) : int =
              | _ => raise EvalError
         end
       | _ => raise Match;
+```
 
-(* Machinery for checking whether expressions are closed *)
+We extend here the machinery for checking if expressions are closed.
+
+``` ocaml
 fun isIn x s =
     case s of
         [] => false
@@ -171,7 +217,11 @@ fun freeVars e : string list =
       | _ => raise Match;
 
 fun closed e = (freeVars e = []);
+```
 
+Finally, we define a `run` function that evaluates closed expressions.
+
+``` ocaml
 exception NonClosed;
 
 fun run e =
@@ -179,8 +229,11 @@ fun run e =
         eval e []
     else
         raise NonClosed;
+```
 
-(* Examples *)
+### Examples
+
+``` ocaml
 val e0 = LetFun("f", "x", Prim2("+", Var "x", Var "a"), Call(Var "f", IConst 1));
 freeVars e0;
 val e1 = Let("a", IConst 5, e0);
@@ -195,27 +248,40 @@ val e2 = Let("a", IConst 5,
             ));
 
 run e2;
+```
 
-(* And what about recursive functions? That's why when building the
+## Recursive functions
+
+And what about recursive functions? That's why when building the
 environment for evaluating a function call we include the function's
 value, as the declaration environment for the function does not
 include its value.
 
- (Call(Var f, e)) =>
- let val fv = (lookup st f) in
-     case fv of
-         (Closure(f, x, e1, fSt)) =>
-         let val ev = Int(eval e st);
-             val st' = (x, ev) :: (f, fv) :: fSt
-                                  ------
-                                   ^
-                                   allows recursive calls
-         in
-             eval e1 st'
-         end
-*)
+```ocaml
+(Call(Var f, e)) =>
+let val fv = (lookup st f) in
+    case fv of
+        (Closure(f, x, e1, fSt)) =>
+        let val ev = Int(eval e st);
+            val st' = (x, ev) :: (f, fv) :: fSt
+                                 ------
+                                  ^
+                                  allows recursive calls
+        in
+            eval e1 st'
+        end
+```
 
-(* fun fact x = if x = 0 then 1 else x*(fact (x-1)); *)
+- Example of SML expression and its correspondent in our language
+
+  - SML expression
+``` ocaml
+fun fact x = if x = 0 then 1 else x*(fact (x-1));
+```
+
+  - Equivalent
+
+```ocaml
 fun fact n = LetFun("fact", "x",
                     Ite(Prim2("=", Var "x", IConst 0),
                         IConst 1,
@@ -229,3 +295,4 @@ fact 0;
 run (fact 0);
 fact 5;
 run (fact 5);
+```

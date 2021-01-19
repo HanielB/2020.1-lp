@@ -9,7 +9,7 @@ title: Bindings and scopes
 - TOC
 {:toc}
 
-## How one binds symbols to values in SML
+## Binding symbols to values in SML
 
 ``` ocaml
 val a = 5;
@@ -247,7 +247,9 @@ fun diff s1 s2 =
         [] => []
       | (h::t) => if isIn h s2 then diff t s2 else h::(diff t s2);
 ```
+
 - Tests
+
 ``` ocaml
 val s1 = ["x1", "x2"];
 isIn "x1" s1;
