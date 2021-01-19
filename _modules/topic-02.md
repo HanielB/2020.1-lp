@@ -21,3 +21,15 @@ title: Topic 02 - Syntax and semantics of programming languages
 : **Q&A**
   : 13:00,
   : 17:00
+
+18 Jan
+: [**Binding and scopes**]({{ site.baseurl }}{% link _lessons/06-languages/binding-scopes.md %})
+  : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZx-ypmoxWNxo_OqegclNVAO)
+
+20 Jan
+: [**Closures**]({{ site.baseurl }}{% link _lessons/06-languages/closures.md %})
+  : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwsNyF3Pt9n-sc6U_m_7Qia)
+
+<!-- : **Q&A** -->
+<!--   : 13:00, -->
+<!--   : 17:00 -->
