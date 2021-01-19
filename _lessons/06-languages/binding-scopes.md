@@ -9,6 +9,19 @@ title: Bindings and scopes
 - TOC
 {:toc}
 
+## Overview
+
+- Binding and scopes.
+  - Extending the basic expression language with let binders.
+  - Evaluating expressions with let binders.
+  - Static and dynamic scoping
+  - Examples.
+
+- Finite sets in SML
+  - Implementing finite sets using lists.
+  - Free and bound variables.
+  - Closed expressions.
+
 ## Binding symbols to values in SML
 
 ``` ocaml

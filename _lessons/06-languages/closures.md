@@ -9,6 +9,13 @@ title: Closures
 - TOC
 {:toc}
 
+## Overview
+
+- Closures and binding of functional values.
+- Extending the basic expression language with let binders for funcions.
+- Evaluating expressions with let binders for functions and function calls.
+- Examples.
+
 ## Binding function values
 
 We declare functional values in SML for example with
