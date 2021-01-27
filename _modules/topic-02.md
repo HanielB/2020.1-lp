@@ -33,3 +33,8 @@ title: Topic 02 - Syntax and semantics of programming languages
 : **Practical session and Q&A**
   : [Recording 13:00](https://youtu.be/XGhLoaoMn3o),
   : [Recording 17:00](https://youtu.be/i6c27j5412Y)
+
+27 Jan
+: **Q&A**
+  : [Recording 13:00](https://youtu.be/VsewI1QJFY4),
+  : [Recording 17:00](https://youtu.be/WsjoNphWfxE)
