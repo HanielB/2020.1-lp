@@ -9,6 +9,10 @@ title: Closures
 - TOC
 {:toc}
 
+## Readings
+
+- [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages) entry on closures.
+
 ## Overview
 
 - Closures and binding of functional values.

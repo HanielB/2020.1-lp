@@ -9,6 +9,11 @@ title: Bindings and scopes
 - TOC
 {:toc}
 
+## Readings
+
+- Chapter 10 of the textbook
+- [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages) entry on scope.
+
 ## Overview
 
 - Binding and scopes.
