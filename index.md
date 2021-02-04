@@ -84,10 +84,11 @@ language.
 PL concepts such as types and polymorphism, higher-order functions, scope and
 binders, as well as formal notions of syntax and semantics.
 
-# Topic 3: General concepts
+# Topic 3: Implementing programming languages
 
-An introduction to general programming language concepts, viewed from the point
-of view of the imperative, functional and object-oriented paradigms.
+An introduction to general concepts in implementing programming languages,
+viewed from the point of view of the imperative, functional and object-oriented
+paradigms.
 
 # Topic 4: Logic programming
 
