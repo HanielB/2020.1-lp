@@ -13,3 +13,15 @@ title: Topic 03 - Implementing programming languages
 03, 08 Feb
 : [**Memory management**]({{ site.baseurl }}{% link _lessons/08-memory/memory.md %})
   : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxEik6SHGVkc1x1VtTJBsaR)
+
+10 Feb
+: [**Abstraction and Abstract Data Types**]({{ site.baseurl }}{% link _lessons/09-adts/adts.md %})
+  : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZzTwPtz2Vm4SoaB_aHaQMAU)
+
+: **Q&A**
+  : 13:00,
+  : 17:00
+
+22 Feb
+: [**Object Orientation**]({{ site.baseurl }}{% link _lessons/09-adts/oo.md %})
+  : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwZ3_74fYH6KVaUb_q2tG5c)
