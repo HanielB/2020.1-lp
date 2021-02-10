@@ -19,7 +19,7 @@ title: Topic 03 - Implementing programming languages
   : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZzTwPtz2Vm4SoaB_aHaQMAU)
 
 : **Q&A**
-  : 13:00,
+  : [13:00](https://youtu.be/OxTI_YkM2A4),
   : 17:00
 
 22 Feb
