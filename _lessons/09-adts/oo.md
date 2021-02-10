@@ -13,7 +13,7 @@ title: Object orientation
 
 - Chapter 16 of textbook
 - [Class notes]({{ site.baseurl }}{% link _lessons/09-adts/oo.pdf %}) on object orientation.
-- [Source codes used in class]({{ site.baseurl }}{% link _lessons/09-adts/oo-src.pdf %}).
+- [Source codes used in class]({{ site.baseurl }}{% link _lessons/09-adts/oo-src.zip %}).
 - [Object-oriented programming](http://en.wikipedia.org/wiki/Object-oriented_programming)
 
 ## Topics covered
