@@ -31,7 +31,7 @@ title: Topic 03 - Implementing programming languages
   : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZyTxht1aVqX2GC10Ol8qTVG)
 
 : **Tutorial: Ml-lex and ML-yacc**
-  : 13:00
+  : 13:00,
   : [17:00](https://youtu.be/YP6pKyK-kzk)
 
 01, 03 Mar
