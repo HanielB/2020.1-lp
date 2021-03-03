@@ -37,3 +37,7 @@ title: Topic 03 - Implementing programming languages
 01, 03 Mar
 : [**Parameter passing**]({{ site.baseurl }}{% link _lessons/10-error/error-handling.md %})
   : [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxCfI53xXJQdDkCF0YbgGbm)
+
+: **Q&A**
+  : 13:00,
+  : [17:00](https://youtu.be/8PN11nAq-8Q)
