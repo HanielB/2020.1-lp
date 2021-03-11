@@ -1,5 +1,5 @@
 ---
-title: Topic 03 - Logic programming
+title: Topic 04 - Logic programming
 ---
 
 ## {{ page.title }}
