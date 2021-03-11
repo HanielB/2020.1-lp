@@ -7,7 +7,7 @@ title: Topic 04 - Logic programming
 
 08 Mar
 : [**Introduction to Prolog**]({{ site.baseurl }}{% link _lessons/12-prolog/prolog-intro.md %})
-  : Pre-recorded lecture
+  : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZw3XQhb0hwQVSxamEJhF_TO)
 
 10 Mar
 : [**Unification**]({{ site.baseurl }}{% link _lessons/12-prolog/unification.md %})

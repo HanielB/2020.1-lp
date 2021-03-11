@@ -33,7 +33,8 @@ for any application amenable to rule-based logical queries.
 
 Prolog statements are written using *terms*. A term is either:
 
-- an atom: is an identifier, starting with lower case, without a predetermined meaning. E.g.: atom, x, y.
+- an atom: is an identifier, starting with lower case, without a predetermined
+  meaning. E.g.: atom, x, y.
 - a number: a float or integer string. E.g.: 123, -5.5.
 - a variable: an identifier, starting with upper case, or an underscore. They
   are placeholders for arbitrary terms. E.g.: X, Var, _
