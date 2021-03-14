@@ -38,6 +38,16 @@ them equal, we have that substitution as a result, otherwise we have `false`.
 For example, in the first query the terms `a` and `b` have no variables. Since
 they are not equal, it's impossible to unify them and the result is `false`.
 
+## A unification algorithm
+
+A unification algorithm to solve the unification problem can be relatively
+straightforward. Starting with a *unification pair* `<s, t>` and an empty substitution :
+
+1. if `s` is `f(s1, ..., sn)` and `t` is `g(t1, ..., tn)`, no unification is possible
+2. if `s` is `f(s1, ..., sn)` and `t` is `f(t1, ..., tn)`, unify `<s1, t1>`, ..., `<sn, tn>`
+3. if `s` is a variable `x`, then add to the substitution `{x → t}`
+4. if `t` is a variable `x`, then add to the substitution `{x → s}`
+
 ## Most general unifier
 
 There may exist many unifiers for a given unification problem. An important
@@ -52,7 +62,7 @@ Consider the unification problem
 ```
 
 and assume it has these two solutions: `{X = kim}` and `{X = kim, Y = holly}` in
-the current context. The most general unifier is the first substiution, since
+the current context. The most general unifier is the first substitution, since
 every other unifier (like the second substitution here) necessarily will be also
 instantiating `Y` and is thus a specialization of the mgu, which only
 instantiates `X`.
