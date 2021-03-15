@@ -11,9 +11,16 @@ title: Unification and Resolution
 
 ## Readings
 
+- [Writing on the board]({{ site.baseurl }}{% link _lessons/12-prolog/unification.png %}) during class
 - [Tutorial sobre unificação em Prolog](http://www.amzi.com/AdventureInProlog/a10unif.php) (faça os exercícios)
 - [Unification in first-order logic](https://en.wikipedia.org/wiki/Unification_(computer_science)#Syntactic_unification_of_first-order_terms)
 - [Occurs check](https://en.wikipedia.org/wiki/Occurs_check)
+- [Resolution](https://en.wikipedia.org/wiki/Resolution_(logic))
+
+### Recommended readings
+
+- [LeanCop](http://www.leancop.de/), a first-order logic theorem prover in
+  Prolog that fits into a business card.
 
 ## Unification
 
@@ -184,11 +191,11 @@ query, which means that he query is valid.
 
 ### Another example
 
-Consider again the definition of `append`:
+Consider again the definition of `append` (for short, let's use the `@` symbol):
 
 ``` prolog
-append([], L, L).
-append([Head|TailA], B, [Head|TailC]) :- append(TailA, B, TailC).
+@([], L, L).
+@([H|Ta], B, [H|Tc]) :- @(Ta, B, Tc).
 ```
 
-How do we build a refutation for the query `append(X, Y, [1, 2])`?
+How do we build a refutation for the query `@(X, Y, [1, 2])`?
