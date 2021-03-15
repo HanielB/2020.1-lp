@@ -15,7 +15,7 @@ title: Unification and Resolution
 - [Unification in first-order logic](https://en.wikipedia.org/wiki/Unification_(computer_science)#Syntactic_unification_of_first-order_terms)
 - [Occurs check](https://en.wikipedia.org/wiki/Occurs_check)
 
-## What is unification?
+## Unification
 
 The concept of unification comes from first-order logic: given two terms `s` and
 `t`, to *unify* them means to find a *substitution* `σ` over their free
@@ -98,3 +98,97 @@ expensive) unification algorithm. So for example:
 yields `false`.
 
 ## Resolution
+
+The other central component of how a Prolog program runs is
+*resolution*. Resolution is an inference rule such that, given two *clauses*
+(i.e., disjunctions) containing complementary unifiable *literals* (i.e., an
+atom or its negation), produces a new clause by taking the literals of the two
+clauses, except for the complementary ones, and applying the unifier on
+them. For example
+
+
+```
+q(X) v ~p(X)           p(f(Y)) v r(Z)
+-------------------------------------- RESOLUTION_σ
+        q(f(Y)) v r(Z)
+```
+in which `σ` is `{X = f(Y)}`, which unifies `~p(X)` and `p(fY)`.
+
+Prolog programs are composed of facts, rules and queries. We view them as
+clauses in the following way:
+
+- A fact is a clause in itself, with the respective fact being the only literal
+  in the clause (known as a *unit clause*).
+
+- A rule has the shape `G :- P`, meaning that if `P` holds so does `G`. Since
+  this has the shape of an implication `P ⇒ G`, it's equivalent to write as `~P
+  v G`, which is a clause. Note that `~P v G` can always be transformed into a
+  clause with [conjunctive normal
+  form](https://en.wikipedia.org/wiki/Conjunctive_normal_form) (CNF)
+  transformation.
+
+- A query is an arbitrary formula that can be turned into a clause with CNF
+  transformation.
+
+### Refutations
+
+When writing a query in Prolog we want to know if the facts and the rules of
+your program allow that query to hold, i.e., whether the facts `F` the rules `R`
+together entail the query `Q`. This can be written as a logical formula `(F ∧ R)
+⇒ Q`, which is equivalent to `(F ∧ R) v ~Q ⇒ false`. Showing that a series of
+formulas together imply false is called a *refutation proof*.
+
+Using resolution, facts, rules and queries, a Prolog computation works in the
+following manner:
+
+1. Negate the query.
+2. Using the negation of the query, the facts and the rules, apply resolution
+   until the empty clause (equivalent to `false`) is derived.
+
+Let's consider again the example with the [parent.pl]({{ site.baseurl }}{% link
+_lessons/12-prolog/parent.pl %}) program and the query
+
+``` prolog
+?- parent(margaret,X), parent(X, holly).
+```
+
+The negation of this query is the clause `not(parent(margaret,X)); not(parent(X,
+holly))`. Considering the first literal `not(parent(margaret,X))`, there are two candidate resolutions:
+
+1.
+```
+not(parent(margaret,X)); not(parent(X,holly))        parent(margaret, kent).
+---------------------------------------------------------------------------- RESOLUTION_{X = kent}
+                 not(parent(kent,holly))
+```
+
+2.
+```
+not(parent(margaret,X)); not(parent(X,holly))        parent(margaret, kim).
+---------------------------------------------------------------------------- RESOLUTION_{X = kim}
+                 not(parent(kim,holly))
+```
+
+The first resolution results in a clause on which we can apply no other
+resolutions. However we can do another resolution with the second one:
+
+3.
+```
+not(parent(kim,holly))        parent(kim, holly).
+------------------------------------------------- RESOLUTION_{}
+                 false
+```
+
+Since we derive `false` we have built a refutation for the negation of the
+query, which means that he query is valid.
+
+### Another example
+
+Consider again the definition of `append`:
+
+``` prolog
+append([], L, L).
+append([Head|TailA], B, [Head|TailC]) :- append(TailA, B, TailC).
+```
+
+How do we build a refutation for the query `append(X, Y, [1, 2])`?
