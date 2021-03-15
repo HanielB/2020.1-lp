@@ -45,8 +45,8 @@ straightforward. Starting with a *unification pair* `<s, t>` and an empty substi
 
 1. if `s` is `f(s1, ..., sn)` and `t` is `g(t1, ..., tn)`, no unification is possible
 2. if `s` is `f(s1, ..., sn)` and `t` is `f(t1, ..., tn)`, unify `<s1, t1>`, ..., `<sn, tn>`
-3. if `s` is a variable `x`, then add to the substitution `{x → t}`
-4. if `t` is a variable `x`, then add to the substitution `{x → s}`
+3. if `s` is a variable `X`, then add to the substitution `{X = t}`
+4. if `t` is a variable `X`, then add to the substitution `{X = s}`
 
 ## Most general unifier
 
@@ -69,11 +69,15 @@ instantiates `X`.
 
 ## Occurs check
 
-An important aspect of any unification algorithm (i.e., an algorithm to solve
-unification problems) is to avoid a cyclic behavior: it's not possible to unify
-a variable with a term that contains that variable. The test to avoid this issue
-is called the `occurs check`, as one checks whether the variable occurs in the
-term to which it's trying to be unified.
+The algorithm above has a serious issue: it can lead to bogus
+solutions. Consider the unification pair `<X, f(X)>`. With the above algorithm
+the solution would be `{X = f(X)}`, which does not solve the unification
+problem, since appling this substitution transforms `X` into `f(X)` but `f(X)`
+into `f(f(X))`.
+
+To avoid this, unification algorithms implement another rule, the *occurs
+check*. It tests whether the variable to be made equal to a term occurs in this
+term. So in this example the occurs check would fail since `X` occurs in `f(X)`.
 
 In Prolog however this test is ommitted (not in all interpreters, though) for
 reasons of ecciciency: checking whether a variable occurs in a term has
@@ -83,8 +87,8 @@ complexity linear in the size of the term. So for example:
 ?- f(X) = f(f(X)).
 ```
 
-can yield `X = f(X)`. One can avoid this wrong behavior using the binary
-predicate `unify_with_occurs_check`, which performs the correct (but more
+can yield the solution `X = f(X)`. One can avoid this wrong behavior using the
+binary predicate `unify_with_occurs_check`, which performs the correct (but more
 expensive) unification algorithm. So for example:
 
 ``` prolog
