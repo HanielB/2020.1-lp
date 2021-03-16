@@ -15,7 +15,7 @@ title: Numeric predicates
 - Math in Prolog chapter from [Introduction to Programming
   Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages).
 
-## Important concepts
+## Summary
 
 - Prolog has several equality tests, for example:
   - **is** a clause `X is Y` evaluates `Y` and unifies the result with `X`. The
