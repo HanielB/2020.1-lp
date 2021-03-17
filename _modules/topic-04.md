@@ -19,8 +19,10 @@ title: Topic 04 - Logic programming
 15 Mar
 : [**Numeric predicates**]({{ site.baseurl }}{% link _lessons/12-prolog/numeric-predicates.md %})
   : [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZynn3lPPWeWhRe5N0Glv2nT)
+
+17 Mar
 : **Q&A**
-  : 13:00,
+  : [13:00](https://youtu.be/xRCQ4C_Fc0g),
   : 17:00
 
 17, 20 Mar
