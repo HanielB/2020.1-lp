@@ -197,7 +197,7 @@ subSet([H|T], [H|R]) :- subSet(T, R).
 subSet([_|T], R) :- subSet(T, R).
 ```
 
-### All the permutations of a list9
+### All the permutations of a list
 
 ``` prolog
 perm([], []).

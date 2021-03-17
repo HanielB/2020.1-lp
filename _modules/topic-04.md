@@ -23,7 +23,7 @@ title: Topic 04 - Logic programming
 17 Mar
 : **Q&A**
   : [13:00](https://youtu.be/xRCQ4C_Fc0g),
-  : 17:00
+  : [17:00](https://youtu.be/78pAkCpKQMI)
 
 17, 20 Mar
 : **Programming SMT solvers**
