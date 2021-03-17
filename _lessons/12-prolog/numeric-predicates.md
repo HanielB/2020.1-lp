@@ -25,18 +25,22 @@ myLength([_|Tail], Len) :- myLength(Tail, TailLen), Len = TailLen + 1.
 ```
 
 The predicate `myLength` successively decomposes a list and, at each step,
-"increments" its length. So for example
+"increments" its length. So we would expect the query `myLength([1], 1)` to
+hold. However if we run the Prolog interpreter on it it will yield false:
 
 ``` prolog
-?- myLength([1], 0).
-false.
-?- myLength([1], 1).
+?- length([1], 1).
 true.
+?- myLength([1], 1).
+false.
 ```
 
-But how does this actually work, since we know that all computation in Prolog is
-done via unification? For the query `myLength([1], 1).` to hold its negation
-must resolve with the clausal form of the `myLength` rule:
+Why is that? Since we know that all computation in Prolog is done via
+unification in order to build a refutation, let's look closely at what is going
+on.
+
+For the query `? - myLength([1], 1).` to hold, its negation must resolve with
+the clausal form of the `myLength` rule:
 
 ``` prolog
 myLength([_|Tail], Len) v ~myLength(Tail, TailLen) v ~(Len = TailLen + 1)
@@ -54,16 +58,16 @@ We can now resolve this clause with the fact `myLength([], 0)` via the unifier `
 ~(1 = 0 + 1)
 ```
 
-There are no other resolutions we apply, but nevertheless Prolog built a
-refutation for the negation of the query `myLength([1], 1)`. How so? By unifying
-`1` and `0 + 1`, which allows deriving `~(true)`, then `false`, thus fininshing
-the refutation.
+There are no other resolutions we apply. Since Prolog cannot unify `1` and `0 +
+1` (this is like trying to unify `a` and `f(a,b)`), the refutation fails. How
+can we change this?
+
+### The `is` predicate
 
 Prolog is capable of performing *unification modulo arithmetic*, i.e., it can
 apply arithmetic reasoning during unification and unify terms that are not
-syntactically equal if they can be evaluated to equal terms.
-
-### The `is` predicate
+syntactically equal if they can be evaluated to equal terms. This is how the
+`length` predicate is implemented and can say the query `length([1],1).` holds.
 
 This predicate allows us to do explicity do unification modulo arithmetic.
 
@@ -88,6 +92,26 @@ will rase an exception, for example
 will lead to such an error. Another limitation of `is` is that it is not
 commutative. For example, `2 is 1+1` holds but `1+1 is 2` does not. Only the
 second argument is evaluated when doing the unification.
+
+
+#### Fixing `myLength`
+
+With the above in mind, we can rewrite the predicate `myLength` so that Prolog
+can apply unification modulo arithmetic:
+
+``` prolog
+myLength([], 0).
+myLength([_|Tail], Len) :- myLength(Tail, TailLen), Len is TailLen + 1.
+```
+
+With this definition, when building the refutation as we were before we derive
+`~(1 is 0 + 1)`. With the `is` predicate, the predicate `0 + 1` is evaluated to
+`1` before unification is performed, so the actual unification problem is to
+unify `1` (left-hand side of `is`) and `1` (right-hard side of `is` after
+evaluation), which is trivially unifiable. Thus from `~(1 is 0 + 1)` we derive
+`~(true)`, then `false`, thus fininshing the refutation.
+
+#### Building evaluable arithmetic
 
 In building arithmetic expressions to be evaluated, one can use the following
 binary predicates `+, -, *, /, <, >, =<, >=, =:=, =\=` and unary predicates:
