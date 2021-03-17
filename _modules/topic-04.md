@@ -25,6 +25,6 @@ title: Topic 04 - Logic programming
 
 17, 20 Mar
 : **Programming SMT solvers**
-  : [Pre-recorded lecture](https://www.youtube.com/watch?time_continue=63&v=YTLbqaNWHlo&feature=emb_logo)
-  : [slides](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt.pdf)
-  : [examples](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt-examples.tar.gz)
+  : [Pre-recorded lecture](https://www.youtube.com/watch?time_continue=63&v=YTLbqaNWHlo&feature=emb_logo),
+    [slides](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt.pdf),
+    [examples](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt-examples.tar.gz)
