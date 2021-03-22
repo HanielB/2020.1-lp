@@ -34,5 +34,5 @@ title: Topic 04 - Logic programming
 22 Mar
 : **Q&A**
   : [13:00](https://youtu.be/upAqPkwcbeA),
-  : 17:00
+  : [17:00](https://youtu.be/vG4l_cklAvI)
 : [Writing on the board]({{ site.baseurl }}{% link _lessons/12-prolog/refutations-append.png %})
