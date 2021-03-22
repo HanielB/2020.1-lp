@@ -30,3 +30,9 @@ title: Topic 04 - Logic programming
   : [Pre-recorded lecture](https://www.youtube.com/watch?time_continue=63&v=YTLbqaNWHlo&feature=emb_logo),
     [slides](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt.pdf),
     [examples](https://homepages.dcc.ufmg.br/~hbarbosa/talks/evcomp2020-programming_smt-examples.tar.gz)
+
+22 Mar
+: **Q&A**
+  : [13:00](https://youtu.be/upAqPkwcbeA),
+  : 17:00
+: [Writing on the board]({{ site.baseurl }}{% link _lessons/12-prolog/refutations-append.png %})
