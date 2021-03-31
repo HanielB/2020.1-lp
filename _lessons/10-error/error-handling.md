@@ -11,7 +11,7 @@ title: Error handling
 
 ## Readings
 
-
+- [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZyTxht1aVqX2GC10Ol8qTVG)
 - Chapter 17 of textbook.
 - [Class notes]({{ site.baseurl }}{% link _lessons/10-error/error-handling.pdf %}) on error handling.
 - [Source codes used in class]({{ site.baseurl }}{% link _lessons/10-error/error-handling-src.zip %}).

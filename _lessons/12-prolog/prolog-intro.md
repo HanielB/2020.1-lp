@@ -11,6 +11,7 @@ title: Prolog Introduction
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZw3XQhb0hwQVSxamEJhF_TO)
 - [A linguagem Prolog](http://en.wikipedia.org/wiki/Prolog)
 - O manual [SWI Prolog](http://www.swi-prolog.org/pldoc/refman/). Vocês provavelmente usarão este ambiente de desenvolvimento.
 - [Programação Lógica em Prolog](http://www.cs.uiowa.edu/~slonnegr/plf/Book/AppendixA.pdf).

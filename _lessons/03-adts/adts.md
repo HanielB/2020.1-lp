@@ -11,6 +11,7 @@ title: Algebraic data types
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZzlXW1WrTxseddFxgmoC3-C)
 - Chapter 6 of the textbook
 - [Introduction to programming languages, chapter 7](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages/Algebraic_Data_Types)
 - [ADTs introduction slide]({{ site.baseurl }}{% link _lessons/03-adts/adts.pdf %})

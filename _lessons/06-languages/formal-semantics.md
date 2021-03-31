@@ -11,6 +11,8 @@ title: Formal semantics
 
 ## Readings
 
+- [Pre-recorded lecture: Operational semantics](https://youtube.com/playlist?list=PLeIbBi3CwMZziVG93gcNT__X_xmmtM8ir)
+- [Pre-recorded lecture: Lambda calculus](https://youtube.com/playlist?list=PLeIbBi3CwMZxFVZX1yGTiGiJO7gWd4YJ5)
 - [Operational semantics](http://www.cs.uiowa.edu/~slonnegr/plf/Book/Chapter8.pdf), Sections Seções 8.5 (you can ignore "completeness and consistency") and 8.6.
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entry on semantics.
 

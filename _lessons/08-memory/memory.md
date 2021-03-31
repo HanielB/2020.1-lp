@@ -11,6 +11,7 @@ title: Memory management
 
 ## Readings
 
+- [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxEik6SHGVkc1x1VtTJBsaR)
 - Chapters 12 and 13 of textbook.
 - [Class notes]({{ site.baseurl }}{% link _lessons/08-memory/memory.pdf %}) on memory management.
 - [Numerous memory management techniques](http://www.ibm.com/developerworks/linux/library/l-memory/)

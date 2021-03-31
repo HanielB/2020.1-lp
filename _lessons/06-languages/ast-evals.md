@@ -11,6 +11,7 @@ title: Syntax and semantics
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZzxem8S2aFUUqD5zkaWXYLB)
 - Chapters 2, 3 of the textbook
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entries on syntax, grammars in practice, and interpreted programs.
 

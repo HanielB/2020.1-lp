@@ -11,6 +11,7 @@ title: Closures
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwsNyF3Pt9n-sc6U_m_7Qia)
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages) entry on closures.
 
 ## Overview

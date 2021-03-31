@@ -11,6 +11,7 @@ title: Numeric predicates
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZynn3lPPWeWhRe5N0Glv2nT)
 - [Writing on the board]({{ site.baseurl }}{% link _lessons/12-prolog/num-pred.png %}) during class
 - [99 Problems in Prolog](https://www.ic.unicamp.br/~meidanis/courses/mc336/2009s2/prolog/problemas/).
 - Math in Prolog chapter from [Introduction to Programming

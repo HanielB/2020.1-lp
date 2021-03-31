@@ -11,6 +11,7 @@ title: Bindings and scopes
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZx-ypmoxWNxo_OqegclNVAO)
 - Chapter 10 of the textbook
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages) entry on scope.
 

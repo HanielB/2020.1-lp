@@ -11,6 +11,7 @@ title: Unification and Resolution
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZyH6P_Jboge8kSvUXUCeORz)
 - [Writing on the board]({{ site.baseurl }}{% link _lessons/12-prolog/unification.png %}) during class
 - [Tutorial sobre unificação em Prolog](http://www.amzi.com/AdventureInProlog/a10unif.php) (faça os exercícios)
 - [Unification in first-order logic](https://en.wikipedia.org/wiki/Unification_(computer_science)#Syntactic_unification_of_first-order_terms)

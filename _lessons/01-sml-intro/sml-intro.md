@@ -11,6 +11,7 @@ title: SML Introduction
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxjkRr595OVUL2GC3zCouTm)
 - [An SML Tutorial](http://homepages.inf.ed.ac.uk/stg/NOTES/)
 - [The Definition of Standard ML](https://smlfamily.github.io/sml97-defn.pdf)
   Complete specification of the language's syntax and semantics.

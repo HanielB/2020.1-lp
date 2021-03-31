@@ -11,6 +11,7 @@ title: Higher-order functions
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZyLPWOzBEkBu15ng1F2eIvX)
 - Chapter 11 of the textbook
 - [Introduction to Programming Languages](https://en.wikibooks.org/wiki/Introduction_to_Programming_Languages), entries on Higher-Order functions.
 

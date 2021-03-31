@@ -11,6 +11,7 @@ title: Object orientation
 
 ## Readings
 
+- [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwZ3_74fYH6KVaUb_q2tG5c)
 - Chapter 16 of textbook
 - [Class notes]({{ site.baseurl }}{% link _lessons/09-adts/oo.pdf %}) on object orientation.
 - [Source codes used in class]({{ site.baseurl }}{% link _lessons/09-adts/oo-src.zip %}).

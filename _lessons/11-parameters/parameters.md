@@ -11,6 +11,7 @@ title: Parameter passing
 
 ## Readings
 
+- [Pre-recorded lectures](https://www.youtube.com/playlist?list=PLeIbBi3CwMZxCfI53xXJQdDkCF0YbgGbm)
 - Chapter 17 of textbook.
 - [Class notes]({{ site.baseurl }}{% link _lessons/11-parameters/parameters.pdf %}) on parameter passing.
 - [Source codes used in class]({{ site.baseurl }}{% link _lessons/11-parameters/parameters-src.zip %}).

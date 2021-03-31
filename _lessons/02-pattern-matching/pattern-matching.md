@@ -11,6 +11,7 @@ title: Pattern matching
 
 ## Readings
 
+- [Pre-recorded lecture](https://www.youtube.com/playlist?list=PLeIbBi3CwMZwDfs__URUz4wudPCuDuIS2)
 - [Pattern matching](http://en.wikipedia.org/wiki/Pattern_matching/) article
 
 ## Introduction

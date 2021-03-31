@@ -11,6 +11,8 @@ title: Introduction to Python
 
 ## Readings
 
+- [Pre-recorded lecture 1](https://youtu.be/wSnCxSrHcho) (by Prof. Fernando Pereira)
+- [Pre-recorded lecture 2](https://youtu.be/0eJk49Qqvxk) (by Prof. Fernando Pereira)
 - [Python tutorial](http://docs.python.org/tutorial/)
 - Functional programming in Python (by Prof. Fernando Pereira)
   - [Part 1](https://youtu.be/6ZLWIN2KHa8)
